@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('horario_fim');
             $table->string('faixa_etaria');
             $table->unsignedBigInteger('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias'); 
+            $table->foreign('categoria_id')->references('id')->on('categorias');            
+            $table->unsignedBigInteger('nucleo_id');
+            $table->foreign('nucleo_id')->references('id')->on('users'); 
             $table->timestamps();
         });
     }
