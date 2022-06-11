@@ -9,44 +9,75 @@ class LancamentoController extends Controller
 {
     public function nota(){
         $id = Auth::id();
+    
+        $turmas = Turma::where('nucleo_id', $id);
+        foreach ($turma as $turmas) {
+            $turmaIds[] = $turma->id;
+          }
 
-        $nucleo = User::where('id', $id);
+        $alunos = Aluno::whereIn('turma_id', $turmaIds);
 
-        return $nucleo;
+        $professores = Profissional::where([
+                                    ['nucleo_id', $id],
+                                    ['funcao', 'PROFESSOR']
+                                ]);
+
+        return Inertia::render('', ['alunos' => $alunos, 'professores' => $professores]);
 
     }
 
-    public function presenca(){
+    public function aula(){
         $id = Auth::id();
+    
+        $turmas = Turma::where('nucleo_id', $id);
+        foreach ($turma as $turmas) {
+            $turmaIds[] = $turma->id;
+          }
 
-        $nucleo = User::where('id', $id);
+        $alunos = Aluno::whereIn('turma_id', $turmaIds);
 
-        return $nucleo;
+        $professores = Profissional::where([
+                                    ['nucleo_id', $id],
+                                    ['funcao', 'PROFESSOR']
+                                ]);
+
+        return Inertia::render('', ['alunos' => $alunos, 'professores' => $professores, 'turmas' => $turmas]);
+
 
     }
 
     public function ponto(){
         $id = Auth::id();
 
-        $nucleo = User::where('id', $id);
+        $professores = Profissional::where([
+            ['nucleo_id', $id],
+            ['funcao', 'PROFESSOR']
+        ]);
 
-        return $nucleo;
+        return Inertia::render('', ['professores' => $professores]);
 
     }
 
     public function imc(){
         $id = Auth::id();
+    
+        $turmas = Turma::where('nucleo_id', $id);
+        foreach ($turma as $turmas) {
+            $turmaIds[] = $turma->id;
+          }
 
-        $nucleo = User::where('id', $id);
+        $alunos = Aluno::whereIn('turma_id', $turmaIds);
 
-        return $nucleo;
+        $professores = Profissional::where([
+                                    ['nucleo_id', $id],
+                                    ['funcao', 'PROFESSOR']
+                                ]);
 
+        return Inertia::render('', ['alunos' => $alunos, 'professores' => $professores]);
     }
 
     public function documentos(){
-        $id = Auth::id();
-
-        $nucleo = User::where('id', $id);
+        $categorias = Categoria::all();
 
         return $nucleo;
 
@@ -54,10 +85,20 @@ class LancamentoController extends Controller
 
     public function chamadas(){
         $id = Auth::id();
+    
+        $turmas = Turma::where('nucleo_id', $id);
+        foreach ($turma as $turmas) {
+            $turmaIds[] = $turma->id;
+          }
 
-        $nucleo = User::where('id', $id);
+        $alunos = Aluno::whereIn('turma_id', $turmaIds);
 
-        return $nucleo;
+        $professores = Profissional::where([
+                                    ['nucleo_id', $id],
+                                    ['funcao', 'PROFESSOR']
+                                ]);
+
+        return Inertia::render('', ['alunos' => $alunos, 'professores' => $professores]);
 
     }
 }

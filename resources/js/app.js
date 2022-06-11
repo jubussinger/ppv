@@ -4,6 +4,14 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 
+//import route from 'ziggy';
+//import { Ziggy } from 'ziggy';
+
+//route('home', undefined, undefined, Ziggy);
+
+//import { VueMaskDirective } from "v-mask";
+/*Vue.directive("mask", VueMaskDirective);*/
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({
@@ -18,3 +26,4 @@ createInertiaApp({
 });
 
 InertiaProgress.init({ color: '#4B5563' });
+

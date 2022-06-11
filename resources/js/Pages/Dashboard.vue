@@ -1,10 +1,10 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Passaporte para Vitória" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

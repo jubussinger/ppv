@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/cadastro/turmas', [CadastroController::class, 'chamada'])->name('lancamento_chamada');
+Route::get('/cadastro/turmas', [CadastroController::class, 'turma'])->name('cadastro_turma_aluno');
 
 Route::get('/turmas', [TurmaController::class, 'index'])->name('lista_turma');
 Route::post('/turmas', [TurmaController::class,'store'])->name('cadastro_turma');

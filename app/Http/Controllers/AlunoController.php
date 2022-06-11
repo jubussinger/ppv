@@ -6,6 +6,29 @@ use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
+    public function index()
+    {
+        $id = Auth::id();
+    
+        $turmas = Turma::where('nucleo_id', $id);
+        foreach ($turma as $turmas) {
+            $turmaIds[] = $turma->id;
+          }
+
+        $alunos = Aluno::whereIn('turma_id', $turmaIds);
+
+        return Inertia::render('', ['alunos' => $alunos]);
+
+    }
+
+    public function show($id)
+    {
+        $alunos = Aluno::findOrFailnd($id);
+        //$lessons = course::findOrFail($id)->lesson;
+        return Inertia::render('', ['alunos' => $alunos]);
+    
+    }
+
     public function store(Request $request)
     {
 
@@ -35,7 +58,7 @@ class AlunoController extends Controller
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
                 return response()->json([
-                    'error' => "E-mail já cadastrado!"
+                    'error' => "Login já cadastrado!"
                 ], 500);
             }
             throw $e;
@@ -46,6 +69,14 @@ class AlunoController extends Controller
                 'error' => "Falha ao efetuar o cadastro",
                 'msg' => $e->getMessage()
             ], 500);
+        }
+    }
+
+    public function update(Request $request)
+    {
+        if ($request->has('id')) {
+            Aluno::find($request->input('id'))->update($request->all());
+            return redirect()->back();
         }
     }
 }

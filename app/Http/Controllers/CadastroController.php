@@ -7,11 +7,9 @@ use Illuminate\Http\Request;
 class CadastroController extends Controller
 {
     public function turma(){
-        $id = Auth::id();
+        $alunos = Aluno::where('status', 1);
 
-        $nucleo = User::where('id', $id);
-
-        return $nucleo->alunos();
+        return Inertia::render('CadastroTurma', ['alunos' => $alunos]);
 
     }
 }
