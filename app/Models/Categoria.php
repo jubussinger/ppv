@@ -21,4 +21,8 @@ class Categoria extends Model
         return $this->hasMany(Aluno::class);
     }
 
+    function documentos(){
+        return $this->hasMany(DocumentoCategoria::class);
+    }
+
 }

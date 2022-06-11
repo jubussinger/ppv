@@ -6,7 +6,5 @@ use Illuminate\Http\Request;
 
 class NotaController extends Controller
 {
-    public function index(){
-        return view(‘products’);
-        }
+    //
 }
