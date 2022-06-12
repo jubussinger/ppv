@@ -9,9 +9,17 @@ class LancamentoImc extends Model
 {
     use HasFactory;
 
-    function profissional(){
-        return $this->belongsTo(Profissional::class);
-    }
+    protected $fillable = [
+        'data',
+        'imc',
+        'abaixo_peso',
+        'saudavel',
+        'sobrepeso',
+        'obeso',
+        'muito_obeso',
+        'aluno_id',
+        'nucleo_id'
+    ];
 
     function aluno(){
         return $this->belongsTo(Aluno::class);

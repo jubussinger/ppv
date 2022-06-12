@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('profissional_id');
             $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->foreign('profissional_id')->references('id')->on('profissionals');
-            $table->tinyInteger('sucesso');
+            $table->tinyInteger('sucesso')->default('0');
             $table->string('resultado');
             $table->timestamps();
         });

@@ -9,6 +9,16 @@ class Aula extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'data',
+        'presenca',
+        'atestado',
+        'aluno_id',
+        'profissional_id',  
+        'turma_id',           
+        'nucleo_id'
+    ];
+
     function nucleo(){
         return $this->belongsTo(User::class);
     }

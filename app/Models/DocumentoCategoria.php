@@ -9,6 +9,12 @@ class DocumentoCategoria extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'data',        
+        'caminho',
+        'categoria_id'
+    ];
+
     function categoria(){
         $this->belongsTo(Categoria::class);
     }

@@ -17,17 +17,15 @@ return new class extends Migration
             $table->id();
             $table->date('data');
             $table->decimal('imc');
-            $table->tinyInteger('abaixo_peso');
-            $table->tinyInteger('saudavel');
-            $table->tinyInteger('sobrepeso');
-            $table->tinyInteger('obeso');
-            $table->tinyInteger('muito_obeso');
+            $table->tinyInteger('abaixo_peso')->default('0');
+            $table->tinyInteger('saudavel')->default('0');
+            $table->tinyInteger('sobrepeso')->default('0');
+            $table->tinyInteger('obeso')->default('0');
+            $table->tinyInteger('muito_obeso')->default('0');
             $table->unsignedBigInteger('aluno_id');
             $table->unsignedBigInteger('nucleo_id');
-            $table->unsignedBigInteger('profissional_id');
             $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->foreign('nucleo_id')->references('id')->on('users');
-            $table->foreign('profissional_id')->references('id')->on('profissionals');
             $table->timestamps();
         });
     }

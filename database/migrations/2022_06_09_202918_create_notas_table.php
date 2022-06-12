@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('aluno_id');
             $table->unsignedBigInteger('nucleo_id');
             $table->unsignedBigInteger('profissional_id');
-            $table->string('bimestre');
+            $table->string('bimestre')->nullable();
             $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->foreign('nucleo_id')->references('id')->on('users');
             $table->foreign('profissional_id')->references('id')->on('profissionals');

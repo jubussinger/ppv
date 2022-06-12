@@ -9,6 +9,14 @@ class Nota extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'data',
+        'nota',
+        'aluno_id',
+        'profissional_id',            
+        'nucleo_id'
+    ];
+
     function aluno(){
         return $this->belongsTo(Aluno::class);
     }

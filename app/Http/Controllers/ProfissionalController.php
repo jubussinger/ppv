@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profissional;
+use Auth;
+use Inertia\Inertia;
 
 class ProfissionalController extends Controller
 {
@@ -13,31 +15,29 @@ class ProfissionalController extends Controller
     
         $profissionais = Profissional::where('nucleo_id', $id);
 
-        return Inertia::render('', ['profissionais' => $profissionais]);
+        return Inertia::render('ProfissionalDashboard', ['profissionais' => $profissionais]);
 
     }
 
     public function store(Request $request)
     {
-
-        try {
-
-            //DB::beginTransaction();
-
-            $profissional = Profissional::create($request->profissional);
-
-            //$payload = json_decode($request->user, true);
-            
-            //DB::commit();  
-            //return response()->json();
-            return redirect()->back();
-            
-        }         
-        catch (\Exception $e) {
-            //DB::rollBack();
-            return redirect()->back()->withErrors([
-                'store' => 'não foi possível cadastrar profissional'
-            ]);
-        }
+        $nucleoId = Auth::id();
+        $request->validate([/*validation rules*/]);
+        
+        $profissional = Profissional::create([
+            'nome' => $request->nome,
+            'cpf'  => $request->cpf,
+            'endereco' => $request->endereco,
+            'bairro' => $request->bairro,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+            'contato' => $request->contato,
+            'observacao' => $request->observacao,
+            'funcao' => $request->funcao,
+            'status' => '1',
+            'nucleo_id' => $nucleoId
+        ]);
+                
+        return redirect()->back();
     }
 }

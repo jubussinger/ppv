@@ -395,7 +395,7 @@ const submit = () => {
                     </div>
                 
                     <div class="form-group col-6">
-                        <BreezeLabel for="endereco_escolar" value="Enderço da Escola" />
+                        <BreezeLabel for="endereco_escolar" value="Endereço da Escola" />
                         <BreezeInput id="endereco_escolar" type="text" class="form-control" v-model="form.endereco_escolar" required autocomplete="endereco_escolar" />
                     </div>
                 

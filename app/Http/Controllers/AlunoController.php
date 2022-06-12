@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Aluno;
 use App\Models\Turma;
+use Auth;
+use Inertia\Inertia;
 
 class AlunoController extends Controller
 {
@@ -20,6 +22,22 @@ class AlunoController extends Controller
         $alunos = Aluno::whereIn('turma_id', $turmaIds);
 
         return Inertia::render('', ['alunos' => $alunos]);
+
+    }
+
+    public function indexStatus($status)
+    {
+        $id = Auth::id();
+        $turmaIds = array();
+        $turmas = Turma::where('nucleo_id', $id);
+        foreach ($turmas as $turma) {
+            $turmaIds = $turmaIds->push($turma->id);
+          }
+
+        $alunos = Aluno::whereIn('turma_id', $turmaIds)
+                        ->where('status', $status);
+
+        return Inertia::render('AlunoDashboard', ['alunos' => $alunos]);
 
     }
 

@@ -9,6 +9,15 @@ class Chamada extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'data_hora',
+        'sucesso',
+        'resultado',
+        'aluno_id',
+        'profissional_id'
+    ];
+
+
     function aluno(){
         return $this->belongsTo(Aluno::class);
     }

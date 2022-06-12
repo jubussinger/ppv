@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();            
             $table->dateTime('chegada');
             $table->dateTime('saida');
-            $table->tinyInteger('falta');
+            $table->tinyInteger('falta')->default('0');
             $table->unsignedBigInteger('nucleo_id');
             $table->unsignedBigInteger('profissional_id');
             $table->foreign('nucleo_id')->references('id')->on('users');

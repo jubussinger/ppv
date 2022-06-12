@@ -9,6 +9,14 @@ class FolhaPonto extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'chegada',
+        'saida',
+        'falta',
+        'profissional_id',            
+        'nucleo_id'
+    ];
+
     function nucleo(){
         return $this->belongsTo(User::class);
     }

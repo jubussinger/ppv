@@ -4,14 +4,6 @@
 
 
 <template>
-    <body id="page-top">
-
-        <!-- Page Wrapper -->
-        <div id="wrapper">
-
-            <div class="row">
-
-
                 <!-- BARRA LATERAL -->
                 <div class="d-none d-lg-block col-2 p-0 m-0 shadow" style="min-height: 100vh; background-color: #11507A;">
 
@@ -33,8 +25,8 @@
                                         <labe class="d-inline-flex w-75 text-truncate">CADASTRO</labe>
                                     </a>
                                     <ul class="dropdown-menu p-2 mt-2">
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="turma.html">TURMA</a></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="profissional.html">PROFISSIONAL</a></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_turma')">TURMA</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_profissional')">PROFISSIONAL</Link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -44,9 +36,9 @@
                                         <labe class="d-inline-flex w-75 text-truncate">INSCRIÇÕES</labe>
                                     </a>
                                     <ul class="dropdown-menu p-2 mt-2">
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="ativas.html">ATIVAS</a></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="inativas.html">INATIVAS</a></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="documentacao.html">DOCUMENTAÇÃO</a></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_aluno_status', '1')">ATIVAS</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_aluno_status', '0')">INATIVAS</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_aluno_status', '2')">DOCUMENTAÇÃO</Link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -56,9 +48,9 @@
                                         <labe class="d-inline-flex w-75 text-truncate">LANÇAMENTOS</labe>
                                     </a>
                                     <ul class="dropdown-menu p-2 mt-2">
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="alunos.html">ALUNOS</a></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="profissionais.html">PROFISSIONAIS</a></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="fotos.html">FOTOS</a></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="alunos.html">ALUNOS</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="profissionais.html">PROFISSIONAIS</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="fotos.html">FOTOS</Link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -68,9 +60,9 @@
                                         <labe class="d-inline-flex w-75 text-truncate">RELATÓRIOS</labe>
                                     </a>
                                     <ul class="dropdown-menu p-2 mt-2">
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="#">ALUNOS</a></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="#">ACOMPANHAMENTOS</a></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="#">NÚCLEO</a></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="#">ALUNOS</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="#">ACOMPANHAMENTOS</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="#">NÚCLEO</Link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -80,55 +72,4 @@
 
                 </div>
                 <!-- FIM BARRA LATERAL -->
-                
-                <!-- CONTEÚDO -->
-                <div class="col-12 col-lg-10 p-0">
-                    <!-- Content Wrapper -->
-                    <div id="content-wrapper" class="d-flex flex-column">
-
-                        <!-- Main Content -->
-                        <div id="content">
-
-                            <!-- BARRA DO TOPO -->
-                            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                                <!-- Topbar Navbar -->
-                                <ul class="navbar-nav ml-auto mr-2">
-                                    Cleyton Gomes
-                                </ul>
-
-                                <div class="dropdown mr-3">
-                                    <Link :href="route('logout')" method="post" as="button" class="btn">
-                                    <i class="fa fa-sign-out"></i>
-                                    </Link>
-                                </div>
-
-                            </nav>
-                            <!-- FIM BARRA DO TOPO -->
-
-                            <!-- Begin Page Content -->
-                            <div class="container">
-
-
-                            </div>
-                            <!-- /.container-fluid -->
-
-                        </div>
-                        <!-- End of Main Content -->
-
-                    </div>
-                    <!-- End of Content Wrapper -->
-                </div>
-                <!-- FIM CONTEÚDO -->
-
-            </div>
-
-        </div>
-    </body>
 </template>
-
-<style>
-    html, body {
- overflow: hidden;
-}
-</style>

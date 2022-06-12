@@ -43,7 +43,7 @@ Route::get('/profissionais', [ProfissionalController::class, 'index'])->name('li
 Route::post('/profissionais', [ProfissionalController::class, 'store'])->name('cadastro_profissional');
 
 Route::get('/alunos', [AlunoController::class, 'index'])->name('lista_aluno');
-//Route::get('/alunos/{status}', [AlunoController::class, ''])->name('lista_aluno_status');
+Route::get('/alunos/{status}', [AlunoController::class, 'indexStatus'])->name('lista_aluno_status');
 Route::get('/alunos/{id}', [AlunoController::class, 'show'])->name('exibir_aluno');
 Route::post('/alunos', [AlunoController::class, 'store'])->name('cadastro_aluno');
 Route::put('/alunos/{id}', [AlunoController::class,'update'])->name('atualiza_aluno');
@@ -61,7 +61,7 @@ Route::get('/lancamento/imc', [LancamentoController::class, 'imc'])->name('lanca
 Route::post('/imc', [LancamentoImcController::class, 'store'])->name('cadastro_imc');
 
 Route::get('/lancamento/documentos', [LancamentoController::class, 'documento'])->name('lancamento_documento');
-Route::post('/categoria/documentos', [DocumentoCategoria::class, 'store'])->name('doc_categoria');
+Route::post('/categoria/documentos', [DocumentoCategoriaController::class, 'store'])->name('doc_categoria');
 
 Route::get('/lancamento/chamadas', [LancamentoController::class, 'chamada'])->name('lancamento_chamada');
 Route::post('/chamadas', [ChamadaController::class, 'store'])->name('cadastro_chamada');

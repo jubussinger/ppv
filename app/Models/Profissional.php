@@ -9,6 +9,20 @@ class Profissional extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nome',
+        'cpf',
+        'endereco',
+        'bairro',
+        'cidade',
+        'estado',
+        'contato',
+        'observacao',
+        'funcao',
+        'status',
+        'nucleo_id'
+    ];
+
     function nucleos(){
         return $this->belongsTo(User::class);
     }
@@ -27,10 +41,6 @@ class Profissional extends Model
 
     function notas(){
         return $this->hasMany(Nota::class);
-    }
-
-    function lancamentos_imcs(){
-        return $this->hasMany(LancamentoImc::class);
     }
 
     function folhas_pontos(){

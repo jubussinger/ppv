@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->date('data');
             $table->tinyInteger('presenca');
-            $table->tinyInteger('atestado');
+            $table->tinyInteger('atestado')->default('0');
             $table->unsignedBigInteger('aluno_id');
             $table->unsignedBigInteger('nucleo_id');
             $table->unsignedBigInteger('profissional_id');
             $table->unsignedBigInteger('turma_id');
-            $table->string('bimestre');
+            $table->string('bimestre')->nullable();
             $table->foreign('turma_id')->references('id')->on('turmas');
             $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->foreign('nucleo_id')->references('id')->on('users');

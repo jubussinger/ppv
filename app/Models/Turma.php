@@ -9,6 +9,14 @@ class Turma extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'horario_inicio',
+        'horario_fim',
+        'faixa_etaria',
+        'categoria_id',
+        'nucleo_id'
+    ];
+
     function nucleo(){
         return $this->belongsTo(User::class);
     }
