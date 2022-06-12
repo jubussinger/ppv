@@ -9,6 +9,33 @@ class Aluno extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nome',
+        'sexo',
+        'rg',
+        'nascimento',
+        'cpf',
+        'whatsapp',
+        'endereco',
+        'bairro',
+        'cidade',
+        'estado',
+        'pai',
+        'mae',
+        'responsavel', 
+        'deficiencia',
+        'desc_deficienca',
+        'unid_escolar',
+        'ano_escolar',
+        'endereco_escolar',
+        'bairro_escolar',
+        'cidade_escolar',
+        'estado_escolar',
+        'origem_escolar',
+        'telefone_escolar',
+        'status'
+    ];
+
     function nucleo(){
         return $this->belongsTo(User::class);
     }

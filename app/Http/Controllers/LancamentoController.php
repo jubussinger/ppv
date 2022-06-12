@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Aluno;
+use App\Models\Profissional;
+use App\Models\Turma;
+use App\Models\Categoria;
 
 class LancamentoController extends Controller
 {

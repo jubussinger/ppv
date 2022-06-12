@@ -1,12 +1,13 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import SideBarLayout from '@/components/SideBar.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
     <Head title="Passaporte para Vitória" />
-
-    <BreezeAuthenticatedLayout>
+    <SideBarLayout/> 
+    <!--<BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
@@ -22,5 +23,5 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                 </div>
             </div>
         </div>
-    </BreezeAuthenticatedLayout>
+    </BreezeAuthenticatedLayout>-->
 </template>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Profissional;
 
 class ProfissionalController extends Controller
 {
@@ -21,22 +22,22 @@ class ProfissionalController extends Controller
 
         try {
 
-            DB::beginTransaction();
+            //DB::beginTransaction();
 
             $profissional = Profissional::create($request->profissional);
 
             //$payload = json_decode($request->user, true);
             
-            DB::commit();  
+            //DB::commit();  
             //return response()->json();
             return redirect()->back();
             
         }         
         catch (\Exception $e) {
-            DB::rollBack();
+            //DB::rollBack();
             return redirect()->back()->withErrors([
                 'store' => 'não foi possível cadastrar profissional'
-             ])
+            ]);
         }
     }
 }

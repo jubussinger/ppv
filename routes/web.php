@@ -3,7 +3,18 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\CadastroController;
+use App\Http\Controllers\TurmaController;
+use App\Http\Controllers\ProfissionalController;
+use App\Http\Controllers\LancamentoController;
+use App\Http\Controllers\NotaController;
+use App\Http\Controllers\AulaController;
+use App\Http\Controllers\FolhaPontoController;
+use App\Http\Controllers\LancamentoImcController;
+use App\Http\Controllers\DocumentoCategoriaController;
+use App\Http\Controllers\ChamadaController;
+use App\Http\Controllers\RelatorioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +27,8 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
+    return Inertia::render('Welcome');
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -53,7 +64,7 @@ Route::get('/lancamento/documentos', [LancamentoController::class, 'documento'])
 Route::post('/categoria/documentos', [DocumentoCategoria::class, 'store'])->name('doc_categoria');
 
 Route::get('/lancamento/chamadas', [LancamentoController::class, 'chamada'])->name('lancamento_chamada');
-Route::post('/chamadas', [ChamadaCategoria::class, 'store'])->name('cadastro_chamada');
+Route::post('/chamadas', [ChamadaController::class, 'store'])->name('cadastro_chamada');
 
 Route::get('/relatorio/aluno/{id}', [RelatorioController::class, 'aluno'])->name('relatorio_aluno');
 Route::get('/relatorio/acompanhamento', [RelatorioController::class, 'acompanhamento'])->name('relatorio_acompanhamento');

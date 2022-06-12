@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('bairro');
             $table->string('cidade');
             $table->string('estado');
-            $table->tinyInteger('deficiencia');
-            $table->string('desc_deficienca');
+            $table->tinyInteger('deficiencia')->default(0);
+            $table->string('desc_deficienca')->nullable();
             $table->string('unid_escolar');
             $table->string('ano_escolar');
             $table->string('endereco_escolar');

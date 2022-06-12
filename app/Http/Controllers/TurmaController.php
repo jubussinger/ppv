@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Aluno;
+use App\Models\Turma;
 
 class TurmaController extends Controller
 {
@@ -21,7 +23,7 @@ class TurmaController extends Controller
 
         try {
 
-            DB::beginTransaction();
+            //DB::beginTransaction();
 
             $turma = Turma::create($request->turma);
 
@@ -37,16 +39,16 @@ class TurmaController extends Controller
                 }
             }
 
-            DB::commit();  
+            //DB::commit();  
             //return response()->json();
             return redirect()->back();
             
         }         
         catch (\Exception $e) {
-            DB::rollBack();
+            //DB::rollBack();
             return redirect()->back()->withErrors([
                 'store' => 'não foi possível cadastrar turma'
-             ])
+            ]);
         }
     }
 }
