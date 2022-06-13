@@ -48,9 +48,9 @@
                                         <labe class="d-inline-flex w-75 text-truncate">LANÇAMENTOS</labe>
                                     </a>
                                     <ul class="dropdown-menu p-2 mt-2">
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="alunos.html">ALUNOS</Link></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="profissionais.html">PROFISSIONAIS</Link></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link href="fotos.html">FOTOS</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_aluno')">ALUNOS</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_professores')">PROFESSORES</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_categoria')">CATEGORIAS</Link></li>
                                     </ul>
                                 </li>
                             </ul>

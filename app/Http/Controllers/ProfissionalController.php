@@ -19,6 +19,19 @@ class ProfissionalController extends Controller
 
     }
 
+    public function professores()
+    {
+        $id = Auth::id();
+    
+        $profissionais = Profissional::where([
+                ['nucleo_id', $id], ['funcao', 'PROFESSOR']
+            ])->paginate();
+
+
+        return Inertia::render('LancamentoProfessor', ['profissionais' => $profissionais]);
+
+    }
+
     public function store(Request $request)
     {
         $nucleoId = Auth::id();

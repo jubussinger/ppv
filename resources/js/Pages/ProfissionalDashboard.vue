@@ -1,7 +1,10 @@
 <script setup>
+import BreezeButton from '@/Components/Button.vue';
+import BreezeInput from '@/Components/Input.vue';
+import BreezeLabel from '@/Components/Label.vue';
 import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery'; 
@@ -10,6 +13,23 @@ const props = defineProps({
   profissionais: Object,
 });
 
+const form = useForm({    
+    nome:'',
+    cpf:'',
+    endereco:'',
+    bairro:'',
+    cidade:'',
+    estado:'',
+    contato:'',
+    observacao:'',
+    funcao:'',
+});
+
+const submit = () => {
+    form.post(route('cadastro_profissional'), {
+        onFinish: () => form.reset(),
+    });
+};
 
 $(document).ready(function() {
     $('#dataTable').DataTable();
@@ -101,20 +121,68 @@ $(document).ready(function() {
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="email">Nome:</label>
-                            <input type="email" class="form-control" id="email" placeholder="" name="email">
-                        </div>
-                    </div>
+                <form @submit.prevent="submit">
+                    <div class="modal-body">                        
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="nome">Nome:</label>
+                                <input type="text" v-model="form.nome" class="form-control" id="nome" placeholder="" name="nome">
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <label for="cpf">CPF:</label>
+                                <input type="text" v-model="form.cpf" class="form-control" id="cpf" placeholder="" name="cpf">
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <label for="endereco">Endereço:</label>
+                                <input type="text" v-model="form.endereco" class="form-control" id="endereco" placeholder="" name="endereco">
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <label for="bairro">Bairro:</label>
+                                <input type="text" v-model="form.bairro" class="form-control" id="bairro" placeholder="" name="bairro">
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <label for="cidade">Cidade:</label>
+                                <input type="text" v-model="form.cidade" class="form-control" id="cidade" placeholder="" name="cidade">
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <label for="estado">Estado:</label>
+                                <input type="text" v-model="form.estado" class="form-control" id="estado" placeholder="" name="estado">
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <label for="contato">Contato:</label>
+                                <input type="text" v-model="form.contato" class="form-control" id="contato" placeholder="" name="contato">
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <label for="funcao">Função:</label>
+                                <select v-model="form.funcao" class="form-select form-select-sm form-control" >                                    
+                                    <option value="PROFISSIONAL">PROFISSIONAL</option>
+                                    <option value="COORDENADOR">COORDENADOR</option>
+                                    <option value="TÉCNICO AUXILIAR">TÉCNICO AUXILIAR</option>
+                                    <option value="AUXILIAR ADMINISTRATIVO">AUXILIAR ADMINISTRATIVO</option>
+                                </select>
+                            </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Criar</button>
-                </div>
+                            <div class="form-group col-12">
+                                <label for="observacao">Observação:</label>
+                                <textarea id="observacao" v-model="form.observacao"  class="md-textarea form-control" rows="3"></textarea>
+                            </div>
+                        </div>                        
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <BreezeButton class="btn btn-primary " type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Cadastrar
+                            </BreezeButton>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -16,14 +16,13 @@ class AlunoController extends Controller
     {
         $id = Auth::id();
     
-        $turmas = Turma::where('nucleo_id', $id);
-        foreach ($turma as $turmas) {
-            $turmaIds[] = $turma->id;
-          }
+        $turmaIds = array();        
 
+        $turmaIds = Turma::select('id')->where('nucleo_id', $id)->get()->toArray();
+          
         $alunos = Aluno::whereIn('turma_id', $turmaIds)->paginate();
 
-        return Inertia::render('', ['alunos' => $alunos]);
+        return Inertia::render('LancamentoAluno', ['alunos' => $alunos]);
 
     }
 
@@ -45,11 +44,11 @@ class AlunoController extends Controller
         else{
             $desc_status = "AGUARDANDO DOCUMENTOS";
         }
-        $alunos = Aluno::where('status', $status)->paginate();
+        $alunos = Aluno::where('status', $status)->with('documentos')->paginate();
 
         //dd($desc_status);
 
-        return Inertia::render('AlunoDashboard', ['alunos' => $alunos, 'status_filtro' => $desc_status,]);
+        return Inertia::render('AlunoDashboard', ['alunos' => $alunos, 'status_filtro' => $desc_status]);
 
     }
 

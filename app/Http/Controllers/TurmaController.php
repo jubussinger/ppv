@@ -15,6 +15,8 @@ class TurmaController extends Controller
         $id = Auth::id();
     
         $turmas = Turma::where('nucleo_id', $id)->paginate();
+
+        $alunos = Aluno::where('status', '1')->paginate();
         return Inertia::render('TurmaDashboard', ['turmas' => $turmas]);
 
     }
@@ -22,7 +24,6 @@ class TurmaController extends Controller
     public function store(Request $request)
     {
         $nucleoId = Auth::id();
-        dd($id);
         $request->validate([/*validation rules*/]);
         
         $turma = Turma::create([

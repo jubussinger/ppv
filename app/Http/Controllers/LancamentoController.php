@@ -80,12 +80,6 @@ class LancamentoController extends Controller
         return Inertia::render('', ['alunos' => $alunos, 'professores' => $professores]);
     }
 
-    public function documentos(){
-        $categorias = Categoria::all();
-
-        return $nucleo;
-
-    }
 
     public function chamadas(){
         $id = Auth::id();

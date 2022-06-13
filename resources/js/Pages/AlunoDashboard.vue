@@ -1,7 +1,10 @@
 <script setup>
+import BreezeButton from '@/Components/Button.vue';
+import BreezeInput from '@/Components/Input.vue';
+import BreezeLabel from '@/Components/Label.vue';
 import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery'; 
@@ -11,17 +14,15 @@ const props = defineProps({
   status_filtro: String,
 });
 
-const data = () => {
-  return {
-     selectedItem: {
-     }
-  }
-}
+const form = useForm({    
+    
+});
+
+
 
 const setSelectedItem = (item) => {
-    data.selectedItem = item;
-    document.getElementById('nome').value = data.selectedItem.nome;
-    console.log(data.selectedItem);
+    //document.getElementById('nome').value = data.selectedItem.nome;
+    //console.log(selectedItem[0]);
 };
 
 
@@ -76,7 +77,7 @@ $(document).ready(function() {
                                                     <td>{{aluno.sexo}}</td>
                                                     <td>{{aluno.cpf}}</td>
                                                     <td>{{aluno.matricula}}</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal" @click="setSelectedItem(aluno)"> <i class="fa fa-edit"></i> </a> </td>
+                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal" @click="setSelectedItem(aluno.documentos)"> <i class="fa fa-edit"></i> </a> </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -109,140 +110,182 @@ $(document).ready(function() {
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    
-                    <h4 class="my-4">Informações Pessoais</h4>
+                <form @submit.prevent="submit">
+                    <div class="modal-body">
+                        
+                        <h4 class="my-4">Informações Pessoais</h4>
 
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="nome">Nome:</label>
-                            <input type="text" class="form-control" id="nome" name="nome">
-                        </div>
-                    </div>
-    
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="pwd">RG ou Certidão de Nascimento:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="pwd">CPF:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-                    </div>
-    
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="whatsapp">Whatsapp:</label>
-                            <input type="text" class="form-control" id="whatsapp" placeholder="" name="whatsapp" >
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="pwd">Data de Nascimento:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-                    </div>
-    
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="pwd">Como conheceu o Projeto:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-                    </div>
-    
-                    <hr />
-    
-                    <h4 class="my-4">Uniforme</h4>
-    
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="pwd">Tamanho do Uniforme:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-6">
-                            <label for="pwd">Tamanho da Chuteira:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-                    </div>
-    
-                    <hr />
-    
-                    <h4 class="my-4">Logradouro</h4>
-    
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="pwd">Endereço:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-6">
-                            <label for="pwd">Município:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-12">
-                            <label for="pwd">Bairro:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-                    </div>
-    
-                    <hr />
-    
-                    <h4 class="my-4">Dados do Responsável 1</h4>
-    
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="pwd">Nome:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-6">
-                            <label for="pwd">CPF:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-6">
-                            <label for="pwd">Whatsapp:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-6">
-                            <label for="pwd">Parentesco:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-                    </div>
-    
-                    <hr />
-    
-                    <h4 class="my-4">Dados do Responsável 2</h4>
-    
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="pwd">Nome:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-6">
-                            <label for="pwd">CPF:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-6">
-                            <label for="pwd">Whatsapp:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-    
-                        <div class="form-group col-6">
-                            <label for="pwd">Parentesco:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
-                        </div>
-                    </div>
+                        <div class="row">
+                            <div class="form-group col-8">
+                                <BreezeLabel for="nome" value="Nome" />
+                                <BreezeInput id="nome" type="text" class="form-control" required autofocus autocomplete="nome" />
+                            </div>                
+                        
+                            <div class="form-group col-4">
+                                <BreezeLabel for="cpf" value="CPF" />
+                                <BreezeInput id="cpf" type="text" class="form-control" required autocomplete="cpf" />
+                            </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Criar</button>
-                </div>
+                            <div class="form-group col-4">
+                                <BreezeLabel for="rg" value="RG" />
+                                <BreezeInput id="rg" type="text" class="form-control" required  autocomplete="rg" />
+                            </div>
+                        
+                            <div class="form-group col-4">
+                                <BreezeLabel for="nascimento" value="Data Nascimento" />
+                                <BreezeInput id="nascimento" type="date" class="form-control" required autocomplete="nascimento" @change="getAge(form.nascimento)" />
+                            </div>
+                        
+                            <div class="form-group col-4">
+                                <BreezeLabel for="idade" value="Idade" />
+                                <BreezeInput id="idade" type="text" class="form-control" readonly="readonly" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <div>
+                                    <p>Sexo</p>
+                                    <div class="form-check form-check-inline">
+                                        <BreezeInput type="radio" class="form-check-input" name="sexo" id="M" value="M" />
+                                        <BreezeLabel for="M" value="Masculino" class="form-check-label" />
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <BreezeInput type="radio" class="form-check-input"  name="sexo" id="F" value="F" />
+                                        <BreezeLabel for="F" value="Feminino" class="form-check-label" />
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="whatsapp" value="Whatsapp" />
+                                <BreezeInput id="whatsapp" type="text" class="form-control" required  autocomplete="whatsapp" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="endereco" value="Endereço" />
+                                <BreezeInput id="endereco" type="text" class="form-control" required  autocomplete="endereco" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="bairro" value="Bairro" />
+                                <BreezeInput id="bairro" type="text" class="form-control" required autocomplete="bairro" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="cidade" value="Cidade" />
+                                <BreezeInput id="cidade" type="text" class="form-control" required autocomplete="cidade" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="estado" value="Estado" />
+                                <BreezeInput id="estado" type="text" class="form-control" required autocomplete="estado" />
+                            </div>
+                        
+                            <div class="form-group col-12">
+                                <BreezeLabel for="pai" value="Nome do Pai" />
+                                <BreezeInput id="pai" type="text" class="form-control" required autocomplete="pai" />
+                            </div>
+                        
+                            <div class="form-group col-12">
+                                <BreezeLabel for="mae" value="Nome da Mãe" />
+                                <BreezeInput id="mae" type="text" class="form-control" required autocomplete="mae" />
+                            </div>
+                        
+                            <div class="form-group col-12">
+                                <BreezeLabel for="responsavel" value="Responsável Legal" />
+                                <BreezeInput id="responsavel" type="text" class="form-control" required autocomplete="responsavel" />
+                            </div>
+                        
+                            <div class="form-group col-3">
+                                <div>
+                                    <p></p>
+                                <div class="form-check ">
+                                    
+                                    <BreezeInput type="checkbox" @change="checkChange" class="form-check-input" name="deficiencia" id="deficiencia" />
+                                    <BreezeLabel for="deficiencia" class="form-check-label" value="Possuo Deficiência" />
+                                </div> 
+                                </div>
+                            </div> 
+                            <div class="form-group col-9">    
+                                <BreezeLabel for="desc_deficienca" value="Se sim, qual?" />
+                                <BreezeInput id="desc_deficienca" type="text" class="form-control" autocomplete="desc_deficienca" />
+                            </div>
+                        </div>
+                        <hr />
+                        <h4 class="my-4">Informações Escolares</h4>
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <BreezeLabel for="unid_escolar" value="Unidade Escolar" />
+                                <BreezeInput id="unid_escolar" type="text" class="form-control" required autocomplete="unid_escolar" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="ano_escolar" value="Ano da Escolaridade" />
+                                <BreezeInput id="ano_escolar" type="text" class="form-control" required autocomplete="ano_escolar" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="endereco_escolar" value="Endereço da Escola" />
+                                <BreezeInput id="endereco_escolar" type="text" class="form-control" required autocomplete="endereco_escolar" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="bairro_escolar" value="Bairro da Escola" />
+                                <BreezeInput id="bairro_escolar" type="text" class="form-control"  required autocomplete="bairro_escolar" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="cidade_escolar" value="Cidade da Escola" />
+                                <BreezeInput id="cidade_escolar" type="text" class="form-control" required autocomplete="cidade_escolar" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="estado_escolar" value="Estado da Escola" />
+                                <BreezeInput id="estado_escolar" type="text" class="form-control" required autocomplete="estado_escolar" />
+                            </div>
+                        
+                            <div class="form-group col-6">
+                                <BreezeLabel for="telefone_escolar" value="Telefone da Escola" />
+                                <BreezeInput id="telefone_escolar" type="text" class="form-control" required autocomplete="telefone_escolar" />
+                            </div>
+                            <div class="form-group col-6">
+                                <div>
+                                    <p>Origem Escolar</p>
+                                    <div class="form-check form-check-inline">
+                                        <BreezeInput name="origem" class="form-check-input" type="radio" id="particular" value="PARTICULAR" />
+                                        <BreezeLabel class="form-check-label" for="particular" value="Particular"/>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <BreezeInput name="origem" class="form-check-input" type="radio" id="estadual" value="ESTADUAL" />
+                                        <BreezeLabel class="form-check-label" for="estadual" value="Estadual"/>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <BreezeInput name="origem" class="form-check-input" type="radio" id="municipal" value="MUNICIPAL" />
+                                        <BreezeLabel class="form-check-label" for="municipal" value="Municipal"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="my-4">Documentos</h4>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <ul class="col-12 ml-5 list-inline" >
+                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" ></a> 12/06/2022</li>
+                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
+                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
+                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
+                                </ul>
+                            </div>
+                        </div>                        
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <BreezeButton class="btn btn-primary " type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Cadastrar
+                            </BreezeButton>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

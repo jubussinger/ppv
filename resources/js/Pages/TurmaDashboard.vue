@@ -1,4 +1,7 @@
 <script setup>
+import BreezeButton from '@/Components/Button.vue';
+import BreezeInput from '@/Components/Input.vue';
+import BreezeLabel from '@/Components/Label.vue';
 import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
@@ -8,7 +11,6 @@ import $ from 'jquery';
 
 const props = defineProps({
   turmas: Object,
-  alunos: Object,
 });
 
 const form = useForm({    
@@ -26,6 +28,15 @@ const submit = () => {
         onFinish: () => form.reset(),
     });
 };
+
+var selectedItem = {};
+
+const setSelectedItem = (item) => {
+    return selectedItem = item;
+    //document.getElementById('nome').value = data.selectedItem.nome;
+    console.log(selectedItem);
+};
+
 </script>
 
 <template>
@@ -57,7 +68,7 @@ const submit = () => {
                             
                             <!-- iniciar Modal -->
                             <div class="row d-block text-right p-0 m-0">
-                                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#novaTurmaModal">
+                                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#novaTurmaModal" >
                                     Adicionar Turma
                                 </button>
                             </div>
@@ -116,19 +127,19 @@ const submit = () => {
                 <form @submit.prevent="submit">
                     <div class="modal-body">                    
                         <div class="row">
-                            <div class="form-group col-12">
+                            <div class="form-group col-4">
                                 <label for="faixa">Faixa Etária:</label>
                                 <input type="text" class="form-control" id="faixa" name="faixa" v-model="form.faixa_etaria">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-12">
+                            <div class="form-group col-4">
                                 <label for="inicio">Horário Início:</label>
                                 <input type="text" class="form-control" id="inicio" name="inicio" v-model="form.horario_inicio">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-12">
+                            <div class="form-group col-4">
                                 <label for="fim">Horário Final:</label>
                                 <input type="text" class="form-control" id="fim" name="fim" v-model="form.horario_fim">
                             </div>
@@ -138,8 +149,8 @@ const submit = () => {
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <BreezeButton class="btn btn-primary " :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Criar
+                        <BreezeButton class="btn btn-primary " type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Cadastrar
                             </BreezeButton>
                     </div>
                 </form>
@@ -160,20 +171,20 @@ const submit = () => {
                 <div class="modal-body">                    
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="faixa">Faixa Etária:</label>
-                                <input type="text" class="form-control" id="faixa" name="faixa" disabled>
+                                <BreezeLabel for="faixa">Faixa Etária:</BreezeLabel>
+                                <BreezeInput type="text" class="form-control" id="faixa" name="faixa" disabled v-model="selectedItem.faixa_etaria"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="inicio">Horário Início:</label>
-                                <input type="text" class="form-control" id="inicio" name="inicio" disabled>
+                                <BreezeLabel for="inicio">Horário Início:</BreezeLabel>
+                                <BreezeInput type="text" class="form-control" id="inicio" name="inicio" disabled v-model="selectedItem.horario_inicio"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="fim">Horário Final:</label>
-                                <input type="text" class="form-control" id="fim" name="fim" disabled>
+                                <BreezeLabel for="fim">Horário Final:</BreezeLabel>
+                                <BreezeInput type="text" class="form-control" id="fim" name="fim" disabled v-model="selectedItem.horario_fim"/>
                             </div>
                         </div>
 
