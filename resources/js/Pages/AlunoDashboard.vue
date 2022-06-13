@@ -3,6 +3,25 @@ import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
+const props = defineProps({
+  alunos: Object,
+  status_filtro: String,
+});
+
+const data = () => {
+  return {
+     selectedItem: {
+     }
+  }
+}
+
+const setSelectedItem = (item) => {
+    data.selectedItem = item;
+    document.getElementById('nome').value = data.selectedItem.nome;
+    console.log(data.selectedItem.nome);
+};
+
+
 $(document).ready(function() {
     $('#dataTable').DataTable();
 } );
@@ -31,8 +50,8 @@ $(document).ready(function() {
                         <div class="container px-2 px-lg-5 px-xl-4">
 
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-secondary">Inscrições Alunos</h1>
-                            <p class="mb-4">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM .</p>
+                            <h1 class="h3 mb-2 text-secondary">Alunos</h1>
+                            <p class="mb-4">Cadastro de Alunos - <b>{{status_filtro}}</b></p>
 
                             <!-- DataTales Example -->
                             <div class="mt-5 mb-4">
@@ -42,47 +61,19 @@ $(document).ready(function() {
                                             <thead>
                                                 <tr>
                                                     <th>Nome</th>
-                                                    <th>Idade</th>
-                                                    <th>Data Inscrição</th>
-                                                    <th>Estado</th>
+                                                    <th>Sexo</th>
+                                                    <th>CPF</th>
+                                                    <th>Matrícula</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>CLEYTON GOMES</td>
-                                                    <td>18</td>
-                                                    <td>12/08/2017</td>
-                                                    <td>ATIVO</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CLEYTON GOMES</td>
-                                                    <td>18</td>
-                                                    <td>12/08/2017</td>
-                                                    <td>ATIVO</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CLEYTON GOMES</td>
-                                                    <td>18</td>
-                                                    <td>12/08/2017</td>
-                                                    <td>ATIVO</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CLEYTON GOMES</td>
-                                                    <td>18</td>
-                                                    <td>12/08/2017</td>
-                                                    <td>ATIVO</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CLEYTON GOMES</td>
-                                                    <td>18</td>
-                                                    <td>12/08/2017</td>
-                                                    <td>ATIVO</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal"> <i class="fa fa-eye"></i> </a> </td>
+                                                <tr v-for="aluno in alunos.data" :key="aluno.id">
+                                                    <td>{{aluno.nome}}</td>
+                                                    <td>{{aluno.sexo}}</td>
+                                                    <td>{{aluno.cpf}}</td>
+                                                    <td>{{aluno.matricula}}</td>
+                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal" @click="setSelectedItem(aluno)"> <i class="fa fa-edit"></i> </a> </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -121,8 +112,8 @@ $(document).ready(function() {
 
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="email">Nome:</label>
-                            <input type="email" class="form-control" id="email" placeholder="" name="email">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="nome">
                         </div>
                     </div>
     
@@ -139,8 +130,8 @@ $(document).ready(function() {
     
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="pwd">Whatsapp:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
+                            <label for="whatsapp">Whatsapp:</label>
+                            <input type="text" class="form-control" id="whatsapp" placeholder="" name="whatsapp" >
                         </div>
                         <div class="form-group col-6">
                             <label for="pwd">Data de Nascimento:</label>

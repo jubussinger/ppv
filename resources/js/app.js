@@ -12,7 +12,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 //import { VueMaskDirective } from "v-mask";
 /*Vue.directive("mask", VueMaskDirective);*/
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Passaporte para Vitória';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

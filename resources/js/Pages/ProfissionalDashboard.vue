@@ -2,7 +2,16 @@
 import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
-   
+
+const props = defineProps({
+  profissionais: Object,
+});
+
+
+$(document).ready(function() {
+    $('#dataTable').DataTable();
+} );
+
 </script>
 
 <template>
@@ -28,7 +37,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
                             <!-- Page Heading -->
                             <h1 class="h3 mb-2 text-secondary">Profissional</h1>
-                            <p class="mb-4">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM .</p>
+                            <p class="mb-4">Cadastro de profissionais no núcleo</p>
 
                             
                             <!-- iniciar Modal -->
@@ -45,43 +54,19 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                                         <table class="table table-striped table-bordered table-sm mb-0" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Código</th>
                                                     <th>Nome</th>
-                                                    <th>Data Criação</th>
+                                                    <th>CPF</th>
+                                                    <th>Função</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>0001</td>
-                                                    <td>Cleyton da Cunha Gomes</td>
-                                                    <td>12/08/2017</td>
-                                                    <td class="text-center"><i class="fa fa-eye"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>0002</td>
-                                                    <td>Cleyton da Cunha Gomes</td>
-                                                    <td>12/08/2017</td>
-                                                    <td class="text-center"><i class="fa fa-eye"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>0001</td>
-                                                    <td>José teste 123</td>
-                                                    <td>12/08/2017</td>
-                                                    <td class="text-center"><i class="fa fa-eye"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>0001</td>
-                                                    <td>Jhonas Brother</td>
-                                                    <td>12/08/2022</td>
-                                                    <td class="text-center"><i class="fa fa-eye"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>0001</td>
-                                                    <td>Jhonas Brother</td>
-                                                    <td>12/08/2017</td>
-                                                    <td class="text-center"><i class="fa fa-eye"></i></td>
-                                                </tr>
+                                                <tr v-for="profissional in profissionais.data" :key="profissional.id">
+                                                    <td>{{profissional.nome}}</td>
+                                                    <td>{{profissional.cpf}}</td>
+                                                    <td>{{profissional.funcao}}</td>
+                                                    <td class="text-center" ><a data-toggle="modal" data-target="#viewInscricaoModal" @click="setSelectedItem(profissional)"><i class="fa fa-eye"></i></a></td>
+                                                </tr>                                                
                                             </tbody>
                                         </table>
                                     </div>

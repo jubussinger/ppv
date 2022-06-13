@@ -3,6 +3,13 @@ import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
+const props = defineProps({
+  turmas: Object,
+  alunos: Object,
+});
+
+
+
 </script>
 
 <template>
@@ -28,8 +35,8 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                         <div class="container px-2 px-lg-5 px-xl-4">
 
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-secondary">Turma</h1>
-                            <p class="mb-4">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM .</p>
+                            <h1 class="h3 mb-2 text-secondary">Turmas</h1>
+                            <p class="mb-4">Cadastro de turmas no núcleo logado</p>
 
                             
                             <!-- iniciar Modal -->
@@ -46,43 +53,21 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                                         <table class="table table-striped table-bordered table-sm mb-0" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Código</th>
+                                                    <th>Categoria</th>
                                                     <th>Faixa Etária</th>
-                                                    <th>Data Criação</th>
+                                                    <th>Horário Início</th>
+                                                    <th>Horário Fim</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>0001</td>
-                                                    <td>07-09</td>
-                                                    <td>12/08/2017</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewTurmaModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>0002</td>
-                                                    <td>07-09</td>
-                                                    <td>12/08/2017</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewTurmaModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>0001</td>
-                                                    <td>09-10</td>
-                                                    <td>12/08/2017</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewTurmaModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>0001</td>
-                                                    <td>07-09</td>
-                                                    <td>12/08/2022</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewTurmaModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>0001</td>
-                                                    <td>07-09</td>
-                                                    <td>12/08/2017</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewTurmaModal"> <i class="fa fa-eye"></i> </a> </td>
-                                                </tr>
+                                                <tr v-for="turma in turmas.data" :key="turma.id">
+                                                    <td>{{turma.categoria_id}}</td>
+                                                    <td>{{turma.faixa_etaria}}</td>
+                                                    <td>{{turma.horario_inicio}}</td>
+                                                    <td>{{turma.horario_fim}}</td>
+                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewTurmaModal"  @click="setSelectedItem(turma)"> <i class="fa fa-eye"></i> </a> </td>
+                                                </tr>                                                
                                             </tbody>
                                         </table>
                                     </div>

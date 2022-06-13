@@ -25,6 +25,9 @@ use App\Http\Controllers\RelatorioController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Inertia::share('auth.user', function () {
+    return Auth::user();
+});
 
 Route::get('/', function () {
     return Inertia::render('Welcome');

@@ -19,7 +19,7 @@ class AlunoController extends Controller
             $turmaIds[] = $turma->id;
           }
 
-        $alunos = Aluno::whereIn('turma_id', $turmaIds);
+        $alunos = Aluno::whereIn('turma_id', $turmaIds)->paginate();
 
         return Inertia::render('', ['alunos' => $alunos]);
 
@@ -27,17 +27,27 @@ class AlunoController extends Controller
 
     public function indexStatus($status)
     {
-        $id = Auth::id();
+        /*$id = Auth::id();
         $turmaIds = array();
         $turmas = Turma::where('nucleo_id', $id);
         foreach ($turmas as $turma) {
             $turmaIds = $turmaIds->push($turma->id);
-          }
+          }*/
+          
+        if($status == 0){
+            $desc_status = "INATIVOS";
+        }
+        else if($status == 1){
+            $desc_status = "ATIVOS";
+        }
+        else{
+            $desc_status = "AGUARDANDO DOCUMENTOS";
+        }
+        $alunos = Aluno::where('status', $status)->paginate();
 
-        $alunos = Aluno::whereIn('turma_id', $turmaIds)
-                        ->where('status', $status);
+        //dd($desc_status);
 
-        return Inertia::render('AlunoDashboard', ['alunos' => $alunos]);
+        return Inertia::render('AlunoDashboard', ['alunos' => $alunos, 'status_filtro' => $desc_status,]);
 
     }
 

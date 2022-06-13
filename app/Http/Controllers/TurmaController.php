@@ -14,8 +14,7 @@ class TurmaController extends Controller
     {
         $id = Auth::id();
     
-        $turmas = Turma::where('nucleo_id', $id);
-
+        $turmas = Turma::where('nucleo_id', $id)->paginate();
         return Inertia::render('TurmaDashboard', ['turmas' => $turmas]);
 
     }

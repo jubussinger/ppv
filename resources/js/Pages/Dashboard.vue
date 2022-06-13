@@ -1,5 +1,5 @@
 <script setup>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+//import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';

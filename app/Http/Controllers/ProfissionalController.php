@@ -13,7 +13,7 @@ class ProfissionalController extends Controller
     {
         $id = Auth::id();
     
-        $profissionais = Profissional::where('nucleo_id', $id);
+        $profissionais = Profissional::where('nucleo_id', $id)->paginate();
 
         return Inertia::render('ProfissionalDashboard', ['profissionais' => $profissionais]);
 
