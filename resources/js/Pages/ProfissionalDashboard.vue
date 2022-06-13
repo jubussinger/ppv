@@ -2,6 +2,9 @@
 import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import $ from 'jquery'; 
 
 const props = defineProps({
   profissionais: Object,
@@ -65,7 +68,7 @@ $(document).ready(function() {
                                                     <td>{{profissional.nome}}</td>
                                                     <td>{{profissional.cpf}}</td>
                                                     <td>{{profissional.funcao}}</td>
-                                                    <td class="text-center" ><a data-toggle="modal" data-target="#viewInscricaoModal" @click="setSelectedItem(profissional)"><i class="fa fa-eye"></i></a></td>
+                                                    <td class="text-center" ><a data-toggle="modal" data-target="#novoProfissionalModal" ><i class="fa fa-eye"></i></a></td>
                                                 </tr>                                                
                                             </tbody>
                                         </table>

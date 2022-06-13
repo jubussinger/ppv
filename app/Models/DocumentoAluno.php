@@ -9,6 +9,11 @@ class DocumentoAluno extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'caminho',
+        'aluno_id',
+    ];
+
     function aluno(){
         return $this->belongsTo(Aluno::class);
     }

@@ -1,15 +1,31 @@
 <script setup>
 import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import $ from 'jquery'; 
 
 const props = defineProps({
   turmas: Object,
   alunos: Object,
 });
 
+const form = useForm({    
+    faixa_etaria:'',
+    horario_inicio:'',
+    horario_fim:'',
+});
 
+$(document).ready(function() {
+    $('#dataTable').DataTable();
+} );
 
+const submit = () => {
+    form.post(route('cadastro_turma'), {
+        onFinish: () => form.reset(),
+    });
+};
 </script>
 
 <template>
@@ -53,7 +69,6 @@ const props = defineProps({
                                         <table class="table table-striped table-bordered table-sm mb-0" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Categoria</th>
                                                     <th>Faixa Etária</th>
                                                     <th>Horário Início</th>
                                                     <th>Horário Fim</th>
@@ -62,7 +77,6 @@ const props = defineProps({
                                             </thead>
                                             <tbody>
                                                 <tr v-for="turma in turmas.data" :key="turma.id">
-                                                    <td>{{turma.categoria_id}}</td>
                                                     <td>{{turma.faixa_etaria}}</td>
                                                     <td>{{turma.horario_inicio}}</td>
                                                     <td>{{turma.horario_fim}}</td>
@@ -99,20 +113,36 @@ const props = defineProps({
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="email">Faixa Etária:</label>
-                            <input type="email" class="form-control" id="email" placeholder="" name="email">
+                <form @submit.prevent="submit">
+                    <div class="modal-body">                    
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="faixa">Faixa Etária:</label>
+                                <input type="text" class="form-control" id="faixa" name="faixa" v-model="form.faixa_etaria">
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="inicio">Horário Início:</label>
+                                <input type="text" class="form-control" id="inicio" name="inicio" v-model="form.horario_inicio">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="fim">Horário Final:</label>
+                                <input type="text" class="form-control" id="fim" name="fim" v-model="form.horario_fim">
+                            </div>
+                        </div>
+
                     </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Criar</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <BreezeButton class="btn btn-primary " :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Criar
+                            </BreezeButton>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -127,19 +157,30 @@ const props = defineProps({
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="email">Faixa Etária:</label>
-                            <input type="email" class="form-control" id="email" placeholder="" name="email">
+                <div class="modal-body">                    
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="faixa">Faixa Etária:</label>
+                                <input type="text" class="form-control" id="faixa" name="faixa" disabled>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="inicio">Horário Início:</label>
+                                <input type="text" class="form-control" id="inicio" name="inicio" disabled>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="fim">Horário Final:</label>
+                                <input type="text" class="form-control" id="fim" name="fim" disabled>
+                            </div>
+                        </div>
 
-                </div>
+                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Criar</button>
+                    <!--<button type="button" class="btn btn-primary">Criar</button>-->
                 </div>
             </div>
         </div>

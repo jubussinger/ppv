@@ -36,6 +36,7 @@ const form = useForm({
     estado_escolar:'',
     origem_escolar:'',
     telefone_escolar:'',
+    file:[],
 });
 
 const submit = () => {
@@ -45,13 +46,42 @@ const submit = () => {
 };
 
 
- const onChange = () => {
+ const checkChange = () => {
     if(form.deficiencia == 1){
         form.deficiencia = 0;
     }else{
         form.deficiencia = 1;
     }
 };
+
+const onFileChange = async(e) => {      
+      
+      if (e.target.files && e.target.files.length) {
+        for (let index = 0; index < e.target.files.length; index++) {
+          form.file.push(e.target.files[index])
+        }
+        
+      }
+    };
+
+
+const getAge = (nascimento) => 
+{
+    var today = new Date();
+    var birthDate = new Date(nascimento);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    if(age == 1){
+        document.getElementById('idade').value = age + " ano";
+    }else{
+        document.getElementById('idade').value = age + " anos";
+    }
+    
+}
 
 </script>
 
@@ -98,9 +128,9 @@ const submit = () => {
         <img class="mt-5 pt-5" src="/img/Passaporte-branca-300x180.png" alt="">
     </div>
 
-    <div class="container">  
+    <div class="container" id="quemsomos">  
         <div class="shadow bg-light rounded p-5 ">
-            <div class="row" id="quemsomos">
+            <div class="row" >
                 <div class="col-12 col-lg-6">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner border rounded shadow-sm">
@@ -111,14 +141,14 @@ const submit = () => {
                                 <img class="d-block w-100" src="/img/escolhinha_2.jpg" alt="Second slide">
                             </div>
                         </div>
-                        <Link class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
-                        </Link>
-                        <Link class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
-                        </Link>
+                        </a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6" >
@@ -129,15 +159,15 @@ const submit = () => {
         </div>
     </div>
 
-    <div class="container">  
-        <div class="shadow bg-light rounded p-5 my-5" id="comoparticipar">
+    <div class="container" id="comoparticipar">  
+        <div class="shadow bg-light rounded p-5 my-5" >
             <h3 class="mt-2">Como participar?</h3>
             <p class="my-4">Meninos e meninas de 05 a 15 anos são muito bem-vindos. As pré-inscrições são realizadas aqui e serão efetivadas mediante entrega de documentos e assinatura dos responsáveis no termo de inscrições nos núcleos do projeto.</p>
         </div>
     </div>
 
-    <div class="container">  
-        <div class="shadow bg-light rounded p-5 my-5" id="locais">
+    <div class="container" id="locais">  
+        <div class="shadow bg-light rounded p-5 my-5" >
             <h3 class="mt-2">Onde tem?</h3>
             <p class="my-4">Através do Ministério da Cidadania – Secretaria Especial do Esporte, sob gestão do Instituto Léo Moura, temos núcleos oficiais das escolinhas de futebol do Projeto Passaporte Para Vitória em todas as regiões do estado do Rio de Janeiro. Confira!</p>
 
@@ -279,8 +309,8 @@ const submit = () => {
         </div>
     </div>
 
-    <div class="container">
-        <div id="inscricao" class="shadow bg-light rounded p-5 my-5">
+    <div class="container" id="inscricao">
+        <div  class="shadow bg-light rounded p-5 my-5">
 
             <h2>Faça logo sua pré-inscrição!</h2>
             Preencha os campos abaixo e agilize a documentação. As vagas são limitadas!
@@ -291,11 +321,16 @@ const submit = () => {
                 <h4 class="my-4">Informações Pessoais</h4>
 
                 <div class="row">
-                    <div class="form-group col-12">
+                    <div class="form-group col-8">
                         <BreezeLabel for="nome" value="Nome" />
                         <BreezeInput id="nome" type="text" class="form-control" v-model="form.nome" required autofocus autocomplete="nome" />
                     </div>                
                 
+                    <div class="form-group col-4">
+                        <BreezeLabel for="cpf" value="CPF" />
+                        <BreezeInput id="cpf" type="text" class="form-control" v-model="form.cpf" required autocomplete="cpf" />
+                    </div>
+
                     <div class="form-group col-4">
                         <BreezeLabel for="rg" value="RG" />
                         <BreezeInput id="rg" type="text" class="form-control" v-model="form.rg" required  autocomplete="rg" />
@@ -303,12 +338,12 @@ const submit = () => {
                 
                     <div class="form-group col-4">
                         <BreezeLabel for="nascimento" value="Data Nascimento" />
-                        <BreezeInput id="nascimento" type="date" class="form-control" v-model="form.nascimento" required autocomplete="nascimento" />
+                        <BreezeInput id="nascimento" type="date" class="form-control" v-model="form.nascimento" required autocomplete="nascimento" @change="getAge(form.nascimento)" />
                     </div>
                 
                     <div class="form-group col-4">
-                        <BreezeLabel for="cpf" value="CPF" />
-                        <BreezeInput id="cpf" type="text" class="form-control" v-model="form.cpf" required autocomplete="cpf" />
+                        <BreezeLabel for="idade" value="Idade" />
+                        <BreezeInput id="idade" type="text" class="form-control" readonly="readonly" />
                     </div>
                 
                     <div class="form-group col-6">
@@ -370,7 +405,7 @@ const submit = () => {
                             <p></p>
                         <div class="form-check ">
                             
-                            <BreezeInput type="checkbox" @change="onChange" class="form-check-input" name="deficiencia" id="deficiencia" v-model="form.deficiencia"/>
+                            <BreezeInput type="checkbox" @change="checkChange" class="form-check-input" name="deficiencia" id="deficiencia" v-model="form.deficiencia"/>
                             <BreezeLabel for="deficiencia" class="form-check-label" value="Possuo Deficiência" />
                         </div> 
                         </div>
@@ -435,6 +470,13 @@ const submit = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <h4 class="my-4">Enviar Documentos</h4>
+                <div class="row">
+                     <div class="form-group col-12">
+                            <BreezeLabel for="file" value="Selecionar Documento"/><br />
+                            <BreezeInput type="file" name="file" multiple="multiple" @change="onFileChange"/><br  />
+                        </div>
                 </div>
                 <div class="row">
                     <div class="col-4">                        

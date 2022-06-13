@@ -22,13 +22,13 @@ class TurmaController extends Controller
     public function store(Request $request)
     {
         $nucleoId = Auth::id();
+        dd($id);
         $request->validate([/*validation rules*/]);
         
         $turma = Turma::create([
             'horario_inicio' => $request->horario_inicio,
             'horario_fim'  => $request->horario_fim,
             'faixa_etaria' => $request->faixa_etaria,
-            'categoria_id' => $request->categoria,
             'nucleo_id' => $nucleoId
         ]);
         

@@ -2,6 +2,9 @@
 import SideBarLayout from '@/components/SideBar.vue';
 import NavBarLayout from '@/components/NavBar.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import $ from 'jquery'; 
 
 const props = defineProps({
   alunos: Object,
@@ -18,7 +21,7 @@ const data = () => {
 const setSelectedItem = (item) => {
     data.selectedItem = item;
     document.getElementById('nome').value = data.selectedItem.nome;
-    console.log(data.selectedItem.nome);
+    console.log(data.selectedItem);
 };
 
 

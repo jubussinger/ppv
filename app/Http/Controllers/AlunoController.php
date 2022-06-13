@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Aluno;
+use App\Models\DocumentoAluno;
 use App\Models\Turma;
 use Auth;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class AlunoController extends Controller
 {
@@ -94,20 +96,20 @@ class AlunoController extends Controller
                 'status' => '2'
             ]);
             
-            if ($request->hasFile('documento')) {
-
-                $path = "public/usuario/{$usuario->id}";
-
-                $stored = $request->documento->store($path);
-
-                $usuario->certidao = str_replace("public", "storage", $stored);
-
-                $usuario->update();
+            if ($request->hasFile('file')) {
+                foreach ($request->file as $documento) {
+                    $path = "public/documentos/{$aluno->id}";
+                    $stored = $documento->store($path);
+                    DocumentoAluno::create([
+                        'caminho' => str_replace("public", "storage", $stored),
+                        'aluno_id' => $aluno->id,
+                    ]);
+                }
             }
 
             //DB::commit();
                         
-            return redirect()->back();
+            return redirect('/');
             
         //} 
         /*catch (\Illuminate\Database\QueryException $e){

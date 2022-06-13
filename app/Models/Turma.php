@@ -13,16 +13,11 @@ class Turma extends Model
         'horario_inicio',
         'horario_fim',
         'faixa_etaria',
-        'categoria_id',
         'nucleo_id'
     ];
 
     function nucleo(){
         return $this->belongsTo(User::class);
-    }
-
-    function categoria(){
-        return $this->belongsTo(Categoria::class);
     }
 
     function alunos(){
