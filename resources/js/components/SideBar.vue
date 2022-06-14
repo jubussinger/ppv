@@ -11,7 +11,7 @@
                         <!-- Sidebar - Brand -->
                         <div class="row my-4">
                             <div class="col-12 d-block text-center p-0">
-                                <img class="w-75" src="/img/Passaporte-branca-300x180.png">
+                                <Link :href="route('dashboard')" ><img class="w-75" src="/img/Passaporte-branca-300x180.png"></Link>
                             </div>
                         </div>
 
