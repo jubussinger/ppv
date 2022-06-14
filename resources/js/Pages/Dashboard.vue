@@ -26,8 +26,17 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                         <NavBarLayout />
  
                         <div class="container px-2 px-lg-5 px-xl-4">
-
-                            
+                            <h1 class="h3 mb-2 text-secondary text-center">Seja Bem-Vindo(a)!</h1>
+                            <p class="mb-4 mb-2 text-secondary text-center"><b>Informações do núcleo conectado:</b></p>
+                            <p class="mb-4 mb-2 text-secondary text-center"><b>RESPONSÁVEL</b></p>
+                            <p class="mb-4 mb-2 text-secondary text-center">{{$page.props.auth.user.responsavel}}</p>
+                            <p class="mb-4 mb-2 text-secondary text-center"><b>ESTADO</b></p>                                
+                            <p class="mb-4 mb-2 text-secondary text-center">{{$page.props.auth.user.estado}}</p>
+                            <p class="mb-4 mb-2 text-secondary text-center"><b>MUNICÍPIO</b></p>
+                            <p class="mb-4 mb-2 text-secondary text-center">{{$page.props.auth.user.municipio}}</p>
+                            <p class="mb-4 mb-2 text-secondary text-center"><b>BAIRRO</b></p>
+                            <p class="mb-4 mb-2 text-secondary text-center">{{$page.props.auth.user.bairro}}</p>
+                        
                         </div>
                     </div>
                     <!-- End of Main Content -->
@@ -47,6 +56,6 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 <style>
     html, body {
- overflow: hidden;
+ overflow: auto;
 }
 </style>

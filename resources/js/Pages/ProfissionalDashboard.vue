@@ -88,7 +88,7 @@ $(document).ready(function() {
                                                     <td>{{profissional.nome}}</td>
                                                     <td>{{profissional.cpf}}</td>
                                                     <td>{{profissional.funcao}}</td>
-                                                    <td class="text-center" ><a data-toggle="modal" data-target="#novoProfissionalModal" ><i class="fa fa-eye"></i></a></td>
+                                                    <td class="text-center" ><Link  :href="'profissionais/'+ profissional.id" ><i class="fa fa-arrow-right"></i></Link></td>
                                                 </tr>                                                
                                             </tbody>
                                         </table>
@@ -193,6 +193,6 @@ $(document).ready(function() {
 
 <style>
     html, body {
- overflow: hidden;
+ overflow: auto;
 }
 </style>

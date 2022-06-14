@@ -47,4 +47,13 @@ class TurmaController extends Controller
         return redirect()->back();
         
     }
+
+    public function show($id)
+    {
+        $turma = Turma::where('id', $id)->paginate(1);
+        $alunos = Aluno::where('turma_id', $id)->paginate();
+
+        return Inertia::render('TurmaInformacoes', ['turma' => $turma, 'alunos' => $alunos]);
+
+    }
 }

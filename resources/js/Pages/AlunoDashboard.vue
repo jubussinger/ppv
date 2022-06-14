@@ -77,7 +77,7 @@ $(document).ready(function() {
                                                     <td>{{aluno.sexo}}</td>
                                                     <td>{{aluno.cpf}}</td>
                                                     <td>{{aluno.matricula}}</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewInscricaoModal" @click="setSelectedItem(aluno.documentos)"> <i class="fa fa-edit"></i> </a> </td>
+                                                    <td class="text-center" ><Link  :href="'/alunos/'+ aluno.id" ><i class="fa fa-arrow-right"></i></Link></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -111,7 +111,7 @@ $(document).ready(function() {
                     </button>
                 </div>
                 <form @submit.prevent="submit">
-                    <div class="modal-body">
+                    <div class="modal-body" >
                         
                         <h4 class="my-4">Informações Pessoais</h4>
 
@@ -270,10 +270,9 @@ $(document).ready(function() {
                         <div class="row">
                             <div class="form-group col-12">
                                 <ul class="col-12 ml-5 list-inline" >
-                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" ></a> 12/06/2022</li>
-                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
-                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
-                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
+                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="/img/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
+                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="/img/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
+                                    <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="/img/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
                                 </ul>
                             </div>
                         </div>                        
@@ -282,7 +281,7 @@ $(document).ready(function() {
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         <BreezeButton class="btn btn-primary " type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Cadastrar
+                                Ativar/Inativar
                             </BreezeButton>
                     </div>
                 </form>
@@ -296,6 +295,6 @@ $(document).ready(function() {
 
 <style>
     html, body {
- overflow: hidden;
+ overflow: auto;
 }
 </style>

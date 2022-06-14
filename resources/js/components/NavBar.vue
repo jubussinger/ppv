@@ -7,7 +7,7 @@
 
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto mr-2">
-            {{$page.props.auth.user.responsavel}}
+            Olá, {{$page.props.auth.user.responsavel}}!
         </ul>
 
         <div class="dropdown mr-3">

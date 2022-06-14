@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Aluno;
 use App\Models\DocumentoAluno;
 use App\Models\Turma;
+use App\Models\ContadorMatricula;
 use Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
@@ -54,9 +55,10 @@ class AlunoController extends Controller
 
     public function show($id)
     {
-        $alunos = Aluno::findOrFailnd($id);
+        $aluno = Aluno::where('id', $id)->paginate();
+        $documentos = DocumentoAluno::where('aluno_id', $id)->paginate();
         //$lessons = course::findOrFail($id)->lesson;
-        return Inertia::render('', ['alunos' => $alunos]);
+        return Inertia::render('AlunoInformacoes', ['aluno' => $aluno, 'documentos' => $documentos]);
     
     }
 
@@ -133,8 +135,34 @@ class AlunoController extends Controller
     public function update(Request $request)
     {
         if ($request->has('id')) {
-            Aluno::find($request->input('id'))->update($request->all());
+            Aluno::where('id', $request->id)->update($request->all());
             return redirect()->back();
         }
+    }
+
+    public function ativar($id)
+    {
+        $matricula = ContadorMatricula::all()->first();
+        $contador_atual = $matricula->contador + 1;
+        $qtd_casas = $matricula->qtd_casas;
+
+        $num_matricula = str_pad($contador_atual, $qtd_casas, "0", STR_PAD_LEFT);
+
+        $aluno = Aluno::where('id', $id)
+        ->update(['status' => '1', 'matricula' => $num_matricula]);
+        
+        $matricula_novo = ContadorMatricula::where('id', $matricula->id)
+                            ->update(['contador' => $contador_atual]);
+        
+        return redirect()->back();
+        
+    }
+
+    public function inativar($id)
+    {
+        $aluno = Aluno::where('id', $id)
+        ->update(['status' => '0']);
+        
+        return redirect()->back();
     }
 }

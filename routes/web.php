@@ -43,16 +43,21 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/turmas', [TurmaController::class, 'index'])->name('lista_turma');
     Route::post('/turmas', [TurmaController::class,'store'])->name('cadastro_turma');
+    Route::get('/turmas/{id}', [TurmaController::class, 'show'])->name('exibir_turma');
 
-    Route::get('/profissionais', [ProfissionalController::class, 'index'])->name('lista_profissional');
-    Route::get('/professores', [ProfissionalController::class, 'professores'])->name('lista_professores');
+    Route::get('/profissionais', [ProfissionalController::class, 'index'])->name('lista_profissional');    
     Route::post('/profissionais', [ProfissionalController::class, 'store'])->name('cadastro_profissional');
+    Route::get('/profissionais/{id}', [ProfissionalController::class, 'show'])->name('exibir_profissional');
+
+    Route::get('/professores', [ProfissionalController::class, 'professores'])->name('lista_professores');
 
     Route::get('/alunos', [AlunoController::class, 'index'])->name('lista_aluno');
-    Route::get('/alunos/{status}', [AlunoController::class, 'indexStatus'])->name('lista_aluno_status');
-    Route::get('/alunos/{id}', [AlunoController::class, 'show'])->name('exibir_aluno');
     Route::post('/alunos', [AlunoController::class, 'store'])->name('cadastro_aluno');
-    Route::put('/alunos/{id}', [AlunoController::class,'update'])->name('atualiza_aluno');
+    Route::put('/alunos', [AlunoController::class,'update'])->name('atualiza_aluno');
+    Route::get('/alunos/{id}', [AlunoController::class, 'show'])->name('exibir_aluno');
+    Route::get('/alunos/status/{status}', [AlunoController::class, 'indexStatus'])->name('lista_aluno_status');
+    Route::get('/alunos/ativar/{id}', [AlunoController::class, 'ativar'])->name('ativar_aluno'); 
+    Route::get('/alunos/inativar/{id}', [AlunoController::class, 'inativar'])->name('inativar_aluno');  
 
     //Route::get('/lancamento/notas', [LancamentoController::class, 'nota'])->name('lancamento_nota');
     Route::post('/notas', [NotaController::class, 'store'])->name('cadastro_nota');

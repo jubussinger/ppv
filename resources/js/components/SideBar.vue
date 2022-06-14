@@ -38,7 +38,7 @@
                                     <ul class="dropdown-menu p-2 mt-2">
                                         <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_aluno_status', '1')">ATIVAS</Link></li>
                                         <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_aluno_status', '0')">INATIVAS</Link></li>
-                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_aluno_status', '2')">DOCUMENTAÇÃO</Link></li>
+                                        <li><span class="fa fa-soccer-ball-o mr-2"></span><Link :href="route('lista_aluno_status', '2')">DOC. PENDENTE</Link></li>
                                     </ul>
                                 </li>
                             </ul>

@@ -53,4 +53,12 @@ class ProfissionalController extends Controller
                 
         return redirect()->back();
     }
+
+    public function show($id)
+    {
+        $profissionais = Profissional::where('id', $id)->paginate();
+
+        return Inertia::render('ProfissionalInformacoes', ['profissional' => $profissionais]);
+
+    }
 }

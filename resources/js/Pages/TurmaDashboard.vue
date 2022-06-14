@@ -25,17 +25,13 @@ $(document).ready(function() {
 
 const submit = () => {
     form.post(route('cadastro_turma'), {
-        onFinish: () => form.reset(),
+        onFinish: () => console.log('teste'),
     });
 };
 
-var selectedItem = {};
-
-const setSelectedItem = (item) => {
-    return selectedItem = item;
-    //document.getElementById('nome').value = data.selectedItem.nome;
-    console.log(selectedItem);
-};
+$("#close_modal").click(function () {
+   $('.modal').modal('hide');
+});
 
 </script>
 
@@ -91,7 +87,7 @@ const setSelectedItem = (item) => {
                                                     <td>{{turma.faixa_etaria}}</td>
                                                     <td>{{turma.horario_inicio}}</td>
                                                     <td>{{turma.horario_fim}}</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#viewTurmaModal"  @click="setSelectedItem(turma)"> <i class="fa fa-eye"></i> </a> </td>
+                                                    <td class="text-center" ><Link  :href="'turmas/'+ turma.id" ><i class="fa fa-arrow-right"></i></Link></td>
                                                 </tr>                                                
                                             </tbody>
                                         </table>
@@ -127,21 +123,21 @@ const setSelectedItem = (item) => {
                 <form @submit.prevent="submit">
                     <div class="modal-body">                    
                         <div class="row">
-                            <div class="form-group col-4">
+                            <div class="form-group col-6">
                                 <label for="faixa">Faixa Etária:</label>
                                 <input type="text" class="form-control" id="faixa" name="faixa" v-model="form.faixa_etaria">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-4">
+                            <div class="form-group col-6">
                                 <label for="inicio">Horário Início:</label>
-                                <input type="text" class="form-control" id="inicio" name="inicio" v-model="form.horario_inicio">
+                                <input type="time" class="form-control" id="inicio" name="inicio" v-model="form.horario_inicio">
+                                
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-4">
+                        
+                            <div class="form-group col-6">
                                 <label for="fim">Horário Final:</label>
-                                <input type="text" class="form-control" id="fim" name="fim" v-model="form.horario_fim">
+                                <input type="time" class="form-control" id="fim" name="fim" v-model="form.horario_fim">
                             </div>
                         </div>
 
@@ -149,7 +145,7 @@ const setSelectedItem = (item) => {
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <BreezeButton class="btn btn-primary " type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <BreezeButton id="close_modal" class="btn btn-primary " type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                 Cadastrar
                             </BreezeButton>
                     </div>
@@ -158,7 +154,7 @@ const setSelectedItem = (item) => {
         </div>
     </div>
 
-
+<!--
     <div class="modal fade" id="viewTurmaModal" tabindex="-1" role="dialog" aria-labelledby="viewTurmaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -174,14 +170,12 @@ const setSelectedItem = (item) => {
                                 <BreezeLabel for="faixa">Faixa Etária:</BreezeLabel>
                                 <BreezeInput type="text" class="form-control" id="faixa" name="faixa" disabled v-model="selectedItem.faixa_etaria"/>
                             </div>
-                        </div>
-                        <div class="row">
+                        
                             <div class="form-group col-12">
                                 <BreezeLabel for="inicio">Horário Início:</BreezeLabel>
                                 <BreezeInput type="text" class="form-control" id="inicio" name="inicio" disabled v-model="selectedItem.horario_inicio"/>
                             </div>
-                        </div>
-                        <div class="row">
+                        
                             <div class="form-group col-12">
                                 <BreezeLabel for="fim">Horário Final:</BreezeLabel>
                                 <BreezeInput type="text" class="form-control" id="fim" name="fim" disabled v-model="selectedItem.horario_fim"/>
@@ -191,17 +185,17 @@ const setSelectedItem = (item) => {
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <!--<button type="button" class="btn btn-primary">Criar</button>-->
+                    <button type="button" class="btn btn-primary">Criar</button>
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     
 </body>
 </template>
 
 <style>
     html, body {
- overflow: hidden;
+ overflow: auto;
 }
 </style>

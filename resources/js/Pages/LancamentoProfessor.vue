@@ -53,7 +53,7 @@ const submit = () => {
 
                             <!-- Page Heading -->
                             <h1 class="h3 mb-2 text-secondary">Lançamento Profissionais</h1>
-                            <p class="mb-4">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM .</p>
+                            <p class="mb-4">Lançamento de pontos dos professores do núcleo</p>
 
 
                             <!-- DataTales Example -->
@@ -74,7 +74,7 @@ const submit = () => {
                                                     <td>{{profissional.nome}}</td>
                                                     <td>{{profissional.cpf}}</td>
                                                     <td>{{profissional.funcao}}</td>
-                                                    <td class="text-center" ><a data-toggle="modal" data-target="#novoProfissionalModal" ><i class="fa fa-eye"></i></a></td>
+                                                    <td class="text-center" ><a data-toggle="modal" data-target="#editLancamentoProfissionalModal" ><i class="fa fa-eye"></i></a></td>
                                                 </tr>                                                
                                             </tbody>
                                         </table>
@@ -102,7 +102,7 @@ const submit = () => {
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editLancamentoProfissionalModalLabel">Lançamento Aluno</h5>
+                    <h5 class="modal-title" id="editLancamentoProfissionalModalLabel">Folha de Ponto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -158,6 +158,6 @@ const submit = () => {
 
 <style>
     html, body {
- overflow: hidden;
+ overflow: auto;
 }
 </style>

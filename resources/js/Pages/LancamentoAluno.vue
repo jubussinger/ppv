@@ -221,6 +221,6 @@ const submit = () => {
 
 <style>
     html, body {
- overflow: hidden;
+ overflow: auto;
 }
 </style>
