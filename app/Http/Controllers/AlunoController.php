@@ -23,7 +23,7 @@ class AlunoController extends Controller
           
         $alunos = Aluno::whereIn('turma_id', $turmaIds)->paginate();
 
-        return Inertia::render('LancamentoAluno', ['alunos' => $alunos]);
+        return Inertia::render('LancamentoAlunoDashboard', ['alunos' => $alunos]);
 
     }
 

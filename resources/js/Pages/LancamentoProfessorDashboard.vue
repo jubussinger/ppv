@@ -10,8 +10,7 @@ import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery'; 
 
 const props = defineProps({
-  profissional: Object,
-  folha_pontos:Object,
+  profissionais: Object,
 });
 
 const form = useForm({    
@@ -50,58 +49,37 @@ const submit = () => {
 
                         <NavBarLayout />
  
-                        <div class="container px-2 px-lg-5 px-xl-4" v-for="p in profissional.data" :key="p.id">
+                        <div class="container px-2 px-lg-5 px-xl-4">
 
-                            <div class="row d-block text-right p-0 m-0">
-                                <button type="button" class="btn btn-primary mb-2"  >
-                                    <Link :href="route('lista_aluno')" style="color: white; text-decoration: none"><i class="fa fa-arrow-left"></i> Voltar </Link>
-                                </button>
-                            </div>
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-secondary">Folha de Pontos</h1>
-                            <p class="mb-4">Folha de pontos do professor: <b>{{p.nome}}</b></p>
+                            <h1 class="h3 mb-2 text-secondary">Lançamento Professores</h1>
+                            <p class="mb-4">Lançamento de pontos dos professores do núcleo</p>
 
-                            <div class="modal-content">                                
-                                <div class="modal-body">
 
-                                    <div class="row">
-                                        <h6 class="col-12">Entrada / Saída</h6>
-                                        <ul class="col-12 ml-5 list-inline">
-                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>07:20 até 15:12</label></li>
-                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>07:20 até 15:12</label></li>
-                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>07:20 até 15:12</label></li>
-                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>07:20 até 15:12</label></li>
-                                        </ul>
-
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Data</label>
-                                                <input type="date" class="form-control" >
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Entrada</label>
-                                                <input type="time" class="form-control" >
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Saída</label>
-                                                <input type="time" class="form-control" >
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">&nbsp;</label>
-                                                <input type="submit" class="form-control btn btn-primary" value="Salvar">
-                                            </div>
-                                        </div>
-
+                            <!-- DataTales Example -->
+                            <div class="mt-5 mb-4">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-sm mb-0" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>CPF</th>
+                                                    <th>Função</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="profissional in profissionais.data" :key="profissional.id">
+                                                    <td>{{profissional.nome}}</td>
+                                                    <td>{{profissional.cpf}}</td>
+                                                    <td>{{profissional.funcao}}</td>
+                                                    <td class="text-center" ><Link :href="'/lancamento/professor/'+ profissional.id" ><i class="fa fa-arrow-right"></i></Link></td>
+                                                </tr>                                                
+                                            </tbody>
+                                        </table>
                                     </div>
-
                                 </div>
-                                
                             </div>
 
                         </div>

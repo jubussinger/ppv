@@ -10,8 +10,7 @@ import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery'; 
 
 const props = defineProps({
-  categoria: Object,
-  documentos:Object,
+  categorias: Object,
 });
 
 const form = useForm({    
@@ -51,44 +50,33 @@ const submit = () => {
 
                         <NavBarLayout />
  
-                        <div class="container px-2 px-lg-5 px-xl-4" v-for="c in categoria.data" :key="c.id">
+                        <div class="container px-2 px-lg-5 px-xl-4">
 
-                            <div class="row d-block text-right p-0 m-0">
-                                <button type="button" class="btn btn-primary mb-2"  >
-                                    <Link :href="route('lista_aluno')" style="color: white; text-decoration: none"><i class="fa fa-arrow-left"></i> Voltar </Link>
-                                </button>
-                            </div>
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-secondary">Folha de Pontos</h1>
-                            <p class="mb-4">Folha de pontos do professor: <b>{{c.nome}}</b></p>
+                            <h1 class="h3 mb-2 text-secondary">Categorias</h1>
+                            <p class="mb-4">Anexos das categorias</p>
 
-                            <div class="modal-content">                                
-                                <div class="modal-body">
 
-                                    <div class="row">
-                                        <h6 class="col-12">Imagens Cadastradas</h6>
-                                        <ul class="col-12 ml-5 list-inline">
-                                            <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
-                                            <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
-                                            <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
-                                            <li><span class="fa fa-soccer-ball-o mr-2"></span><a href="imagens/escolhinha_1.jpg" >Imagem 1</a> 12/06/2022</li>
-                                        </ul>
+                            <!-- DataTales Example -->
+                            <div class="mt-5 mb-4">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-sm mb-0" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nome</th>                                                    
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr  v-for="categoria in categorias.data" :key="categoria.id">
+                                                    <td>{{categoria.nome}}</td>
+                                                    <td class="text-center"> <Link :href="'/lancamento/categoria/'+ categoria.id" ><i class="fa fa-arrow-right"></i></Link> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-
-                                    <hr />
-
-                                    <div class="row">
-                                        <form @submit.prevent="submit">
-                                            <div class="form-group col-12">
-                                                <label for="imagem">Nova Imagem:</label><br />
-                                                <input type="file" name="imagem" accept="image/*"><br />
-                                                <BreezeButton type="submit" name="enviar" value="Salvar" />
-                                            </div>
-                                        </form>
-                                    </div>
-
                                 </div>
-                                
                             </div>
 
                         </div>

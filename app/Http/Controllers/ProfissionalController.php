@@ -28,7 +28,7 @@ class ProfissionalController extends Controller
             ])->paginate();
 
 
-        return Inertia::render('LancamentoProfessor', ['profissionais' => $profissionais]);
+        return Inertia::render('LancamentoProfessorDashboard', ['profissionais' => $profissionais]);
 
     }
 

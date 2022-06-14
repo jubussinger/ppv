@@ -230,7 +230,7 @@ const getAge = (nascimento) =>
                                     <h4 class="my-4">Informações Complementares</h4>
 
                                     <div class="row">
-                                        <input type="hidden" name="id" :value="a.id" v-model="form.id"/>
+                                        <input type="hidden" name="id" v-model="form.id"/>
                                         <div class="form-group col-4">
                                             <BreezeLabel for="tam_chuteira" value="Tamanho da Chuteira" />
                                             <BreezeInput id="tam_chuteira" type="text" class="form-control" v-model="form.tam_chuteira" required  />

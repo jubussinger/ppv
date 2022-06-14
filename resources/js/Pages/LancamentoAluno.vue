@@ -10,28 +10,40 @@ import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery'; 
 
 const props = defineProps({
-  alunos: Object,
+  profissionais: Object,
+  aluno: Object,
+  aulas: Object,
+  lancamentosImc: Object,
+  notas:Object,
+  chamadas:Object,
 });
 
 const form = useForm({    
-    
+    nome:'',
+    cpf:'',
+    endereco:'',
+    bairro:'',
+    cidade:'',
+    estado:'',
+    contato:'',
+    observacao:'',
+    funcao:'',
 });
+
+const submit = () => {
+    form.post(route('cadastro_profissional'), {
+        onFinish: () => form.reset(),
+    });
+};
 
 $(document).ready(function() {
     $('#dataTable').DataTable();
 } );
 
-const submit = () => {
-    form.post(route(''), {
-        onFinish: () => form.reset(),
-    });
-};
-
 </script>
 
 <template>
     <Head title="Passaporte para Vitória" />
-    
     
 <body id="page-top">
 
@@ -49,39 +61,170 @@ const submit = () => {
 
                         <NavBarLayout />
  
-                        <div class="container px-2 px-lg-5 px-xl-4">
+                        <div class="container px-2 px-lg-5 px-xl-4" v-for="a in aluno.data" :key="a.id">
 
+                            <div class="row d-block text-right p-0 m-0">
+                                <button type="button" class="btn btn-primary mb-2"  >
+                                    <Link :href="route('lista_aluno')" style="color: white; text-decoration: none"><i class="fa fa-arrow-left"></i> Voltar </Link>
+                                </button>
+                            </div>
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-secondary">Lançamento Aluno</h1>
-                            <p class="mb-4">Lançamentos relacionados a alunos de turmas do núcleo.</p>
+                            <h1 class="h3 mb-2 text-secondary">Lançamento de Aluno</h1>
+                            <p class="mb-4">Lançamentos relacionados ao aluno: <b>{{a.nome}} - {{a.matricula}}</b></p>
 
+                            <div class="modal-content">                                
+                                <div class="modal-body">
 
-                            <!-- DataTales Example -->
-                            <div class="mt-5 mb-4">
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-sm mb-0" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nome</th>
-                                                    <th>Sexo</th>
-                                                    <th>CPF</th>
-                                                    <th>Matrícula</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr v-for="aluno in alunos.data" :key="aluno.id">
-                                                    <td>{{aluno.nome}}</td>
-                                                    <td>{{aluno.sexo}}</td>
-                                                    <td>{{aluno.cpf}}</td>
-                                                    <td>{{aluno.matricula}}</td>
-                                                    <td class="text-center"> <a data-toggle="modal" data-target="#editLancamentoAlunoModal" @click="setSelectedItem(aluno.documentos)"> <i class="fa fa-edit"></i> </a> </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="row">
+                                        <h6 class="col-12">Presenças</h6>
+                                        <ul class="col-12 ml-5 list-inline">
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>Presente</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>13/06/2022 - <label>Presente</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>14/06/2022 - <label>Falta</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>15/06/2022 - <label>Presente</label></li>
+                                        </ul>
+
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Data</label>
+                                                <input type="date" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Data</label>
+                                                <select class="form-control">
+                                                    <option>Presente</option>
+                                                    <option>Falta</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">&nbsp;</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="Salvar">
+                                            </div>
+                                        </div>
+
                                     </div>
+
+                                    <hr />
+
+                                    <div class="row">
+                                        <h6 class="col-12">IMC</h6>
+                                        <ul class="col-12 ml-5 list-inline">
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>24,7</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/07/2022 - <label>25,5</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/08/2022 - <label>24,9</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/09/2022 - <label>24,9</label></li>
+                                        </ul>
+
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Data</label>
+                                                <input type="date" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">IMC</label>
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">&nbsp;</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="Salvar">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <hr />
+
+                                    <div class="row">
+                                        <h6 class="col-12">Notas</h6>
+                                        <ul class="col-12 ml-5 list-inline">
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/02/2022 - <label>85</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/04/2022 - <label>92</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>92</label></li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/08/2022 - <label>92</label></li>
+                                        </ul>
+
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Data</label>
+                                                <input type="date" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Nota</label>
+                                                <input type="text" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">&nbsp;</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="Salvar">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <hr />
+
+                                    <div class="row">
+                                        <h6 class="col-12">Chamadas</h6>
+                                        <ul class="col-12 ml-5 list-inline">
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>85</label> - <label>sucesso</label><br/>
+                                                <label>A mãe do aluno reclamou da falta de adaptação da criança</label> </li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>92</label> - <label>sucesso</label><br/>
+                                                <label>A mãe do aluno disse estar feliz com o desenvolvimento do filho</label> </li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>92</label> - <label>sem sucesso</label><br/>
+                                                <label>Na ligação, deu que a linha não existe mais</label> </li>
+                                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>92</label> - <label>sem sucesso</label><br/>
+                                                <label>Caixa Postal</label> </li>
+                                        </ul>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Data:</label>
+                                                <input type="date" class="form-control" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label for="observacao">Observações:</label>
+                                                <textarea id="observacao" class="form-control" rows="3"></textarea>
+                                            </div>
+                                        </div> 
+                                        <div class="col-3 mt-4 ml-3">
+                                            <div class="form-group">                                                
+                                                <input type="checkbox" class="form-check-input" id="sucesso">
+                                                <label for="sucesso">Sucesso</label>                                                
+                                            </div>
+                                        </div>  
+                                    </div>    
+                                    <div class="row">
+                                        <div class="col-10"></div>                                 
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">&nbsp;</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="Salvar">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
+                                
                             </div>
 
                         </div>
@@ -97,124 +240,8 @@ const submit = () => {
 
     </div>
     <!-- End of Page Wrapper -->
+   
 
-  
-    <!-- Modal -->
-    <div class="modal fade" id="editLancamentoAlunoModal" tabindex="-1" role="dialog" aria-labelledby="editLancamentoAlunoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editLancamentoAlunoModalLabel">Lançamento Aluno</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="row">
-                        <h6 class="col-12">Presenças</h6>
-                        <ul class="col-12 ml-5 list-inline">
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>Presente</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>Presente</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>Presente</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>Presente</label></li>
-                        </ul>
-
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Data</label>
-                                <input type="date" class="form-control" >
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Data</label>
-                                <select class="form-control">
-                                    <option>Presente</option>
-                                    <option>Ausente</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">&nbsp;</label>
-                                <input type="submit" class="form-control btn btn-primary" value="Salvar">
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <hr />
-
-                    <div class="row">
-                        <h6 class="col-12">IMC</h6>
-                        <ul class="col-12 ml-5 list-inline">
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>12,7</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>13,5</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>13,5</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>13,5</label></li>
-                        </ul>
-
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Data</label>
-                                <input type="date" class="form-control" >
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">IMC</label>
-                                <input type="text" class="form-control" >
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">&nbsp;</label>
-                                <input type="submit" class="form-control btn btn-primary" value="Salvar">
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <hr />
-
-                    <div class="row">
-                        <h6 class="col-12">Notas</h6>
-                        <ul class="col-12 ml-5 list-inline">
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>85</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>92</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>92</label></li>
-                            <li><span class="fa fa-soccer-ball-o mr-2"></span>12/06/2022 - <label>92</label></li>
-                        </ul>
-
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Data</label>
-                                <input type="date" class="form-control" >
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Nota</label>
-                                <input type="text" class="form-control" >
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">&nbsp;</label>
-                                <input type="submit" class="form-control btn btn-primary" value="Salvar">
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
     
 </body>
 </template>

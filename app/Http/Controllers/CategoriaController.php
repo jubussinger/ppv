@@ -16,7 +16,7 @@ class CategoriaController extends Controller
     
         $categorias = Categoria::paginate();
 
-        return Inertia::render('LancamentoCategoria', ['categorias' => $categorias]);
+        return Inertia::render('LancamentoCategoriaDashboard', ['categorias' => $categorias]);
 
     }
     

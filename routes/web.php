@@ -59,6 +59,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/alunos/ativar/{id}', [AlunoController::class, 'ativar'])->name('ativar_aluno'); 
     Route::get('/alunos/inativar/{id}', [AlunoController::class, 'inativar'])->name('inativar_aluno');  
 
+    Route::get('/lancamento/aluno/{id}', [LancamentoController::class, 'aluno'])->name('lancamento_aluno');  
+    Route::get('/lancamento/professor/{id}', [LancamentoController::class, 'professor'])->name('lancamento_professor'); 
+    Route::get('/lancamento/categoria/{id}', [LancamentoController::class, 'categoria'])->name('lancamento_categoria'); 
+
     //Route::get('/lancamento/notas', [LancamentoController::class, 'nota'])->name('lancamento_nota');
     Route::post('/notas', [NotaController::class, 'store'])->name('cadastro_nota');
 
