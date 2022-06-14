@@ -16,8 +16,9 @@ class TurmaController extends Controller
     
         $turmas = Turma::where('nucleo_id', $id)->paginate();
 
-        $alunos = Aluno::where('status', '1')->paginate();
-        return Inertia::render('TurmaDashboard', ['turmas' => $turmas]);
+        $alunos = Aluno::where('status', '1')
+                            ->whereNull('turma_id')->paginate();
+        return Inertia::render('TurmaDashboard', ['turmas' => $turmas, 'alunos' => $alunos]);
 
     }
 

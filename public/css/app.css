@@ -900,12 +900,6 @@ select {
 .mt-1 {
   margin-top: 0.25rem;
 }
-.ml-0 {
-  margin-left: 0px;
-}
-.mr-0 {
-  margin-right: 0px;
-}
 .block {
   display: block;
 }
@@ -1221,12 +1215,6 @@ select {
 }
 .pt-5 {
   padding-top: 1.25rem;
-}
-.pl-0 {
-  padding-left: 0px;
-}
-.pr-0 {
-  padding-right: 0px;
 }
 .text-left {
   text-align: left;

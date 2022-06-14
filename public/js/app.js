@@ -25924,7 +25924,7 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     var submit = function submit() {
-      form.post(route('doc_categoria'), {
+      form.post(route(''), {
         onFinish: function onFinish() {
           return form.reset();
         }
@@ -26390,7 +26390,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'TurmaDashboard',
   props: {
-    turmas: Object
+    turmas: Object,
+    alunos: Object
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -29698,7 +29699,7 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "h3 mb-2 text-secondary"
-}, "Folha de Pontos", -1
+}, "Anexos de Categorias", -1
 /* HOISTED */
 );
 
@@ -29706,7 +29707,7 @@ var _hoisted_12 = {
   "class": "mb-4"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Folha de pontos do professor: ");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Anexos relacionados a categoria: ");
 
 var _hoisted_14 = {
   "class": "modal-content"
@@ -29717,10 +29718,10 @@ var _hoisted_15 = {
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\"><h6 class=\"col-12\">Imagens Cadastradas</h6><ul class=\"col-12 ml-5 list-inline\"><li><span class=\"fa fa-soccer-ball-o mr-2\"></span><a href=\"imagens/escolhinha_1.jpg\">Imagem 1</a> 12/06/2022</li><li><span class=\"fa fa-soccer-ball-o mr-2\"></span><a href=\"imagens/escolhinha_1.jpg\">Imagem 1</a> 12/06/2022</li><li><span class=\"fa fa-soccer-ball-o mr-2\"></span><a href=\"imagens/escolhinha_1.jpg\">Imagem 1</a> 12/06/2022</li><li><span class=\"fa fa-soccer-ball-o mr-2\"></span><a href=\"imagens/escolhinha_1.jpg\">Imagem 1</a> 12/06/2022</li></ul></div><hr>", 2);
 
-var _hoisted_18 = {
+var _hoisted_18 = ["onSubmit"];
+var _hoisted_19 = {
   "class": "row"
 };
-var _hoisted_19 = ["onSubmit"];
 var _hoisted_20 = {
   "class": "form-group col-12"
 };
@@ -29849,15 +29850,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* PROPS */
     , ["href"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(c.nome), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
       onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.submit, ["prevent"])
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, _hoisted_22, _hoisted_23, _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeButton"], {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, _hoisted_22, _hoisted_23, _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeButton"], {
       type: "submit",
       name: "enviar",
       value: "Salvar"
-    })])], 40
+    })])])], 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_19)])])])]);
+    , _hoisted_18)])])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of Main Content ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of Content Wrapper ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" FIM CONTEÚDO ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of Page Wrapper "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -31201,7 +31202,7 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mb-4"
-}, "Cadastro de turmas no núcleo logado", -1
+}, "Cadastro de turmas do núcleo logado", -1
 /* HOISTED */
 );
 

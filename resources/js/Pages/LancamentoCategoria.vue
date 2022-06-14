@@ -24,7 +24,7 @@ $(document).ready(function() {
 } );
 
 const submit = () => {
-    form.post(route('doc_categoria'), {
+    form.post(route(''), {
         onFinish: () => form.reset(),
     });
 };
@@ -59,8 +59,8 @@ const submit = () => {
                                 </button>
                             </div>
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-2 text-secondary">Folha de Pontos</h1>
-                            <p class="mb-4">Folha de pontos do professor: <b>{{c.nome}}</b></p>
+                            <h1 class="h3 mb-2 text-secondary">Anexos de Categorias</h1>
+                            <p class="mb-4">Anexos relacionados a categoria: <b>{{c.nome}}</b></p>
 
                             <div class="modal-content">                                
                                 <div class="modal-body">
@@ -76,17 +76,17 @@ const submit = () => {
                                     </div>
 
                                     <hr />
-
+                                    <form @submit.prevent="submit">
                                     <div class="row">
-                                        <form @submit.prevent="submit">
+                                        
                                             <div class="form-group col-12">
                                                 <label for="imagem">Nova Imagem:</label><br />
                                                 <input type="file" name="imagem" accept="image/*"><br />
                                                 <BreezeButton type="submit" name="enviar" value="Salvar" />
                                             </div>
-                                        </form>
+                                        
                                     </div>
-
+                                </form>
                                 </div>
                                 
                             </div>

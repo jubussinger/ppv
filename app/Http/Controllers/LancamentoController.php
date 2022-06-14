@@ -48,7 +48,7 @@ class LancamentoController extends Controller
                 
         $profissionais = Profissional::where('id', $id)->paginate();
 
-        $folha_ponto = FolhaPonto::where('professor_id', $id)->paginate();
+        $folha_ponto = FolhaPonto::where('profissional_id', $id)->paginate();
 
         return Inertia::render('LancamentoProfessor', 
                                 ['profissional' => $profissionais, 

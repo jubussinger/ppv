@@ -11,6 +11,7 @@ import $ from 'jquery';
 
 const props = defineProps({
   turmas: Object,
+  alunos: Object,
 });
 
 const form = useForm({    
@@ -59,7 +60,7 @@ $("#close_modal").click(function () {
 
                             <!-- Page Heading -->
                             <h1 class="h3 mb-2 text-secondary">Turmas</h1>
-                            <p class="mb-4">Cadastro de turmas no núcleo logado</p>
+                            <p class="mb-4">Cadastro de turmas do núcleo logado</p>
 
                             
                             <!-- iniciar Modal -->

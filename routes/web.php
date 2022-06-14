@@ -63,6 +63,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/lancamento/professor/{id}', [LancamentoController::class, 'professor'])->name('lancamento_professor'); 
     Route::get('/lancamento/categoria/{id}', [LancamentoController::class, 'categoria'])->name('lancamento_categoria'); 
 
+    Route::get('/categoria', [CategoriaController::class, 'index'])->name('lista_categoria');
+    //Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias');
+
     //Route::get('/lancamento/notas', [LancamentoController::class, 'nota'])->name('lancamento_nota');
     Route::post('/notas', [NotaController::class, 'store'])->name('cadastro_nota');
 
@@ -75,7 +78,6 @@ Route::group(['middleware' => ['auth']], function() {
     //Route::get('/lancamento/imc', [LancamentoController::class, 'imc'])->name('lancamento_imc');
     Route::post('/imc', [LancamentoImcController::class, 'store'])->name('cadastro_imc');
 
-    Route::get('/categorias', [CategoriaController::class, 'index'])->name('lista_categoria');
     //Route::get('/lancamento/documentos', [LancamentoController::class, 'documento'])->name('lancamento_documento');
     Route::post('/categoria/documentos', [DocumentoCategoriaController::class, 'store'])->name('doc_categoria');
 
